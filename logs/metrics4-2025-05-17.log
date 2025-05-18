@@ -1,0 +1,581 @@
+23:42:34.672 metrics.system - process.cpu.time{app.name=APP_NAME,server.name=SERVER_NAME} delta_count=2343750000 ns throughput=234375000 ns/s
+23:42:35.293 metrics.system - process.cpu.usage{app.name=APP_NAME,server.name=SERVER_NAME} value=0.04406
+23:42:35.294 metrics.system - process.start.time{app.name=APP_NAME,server.name=SERVER_NAME} value=485414h 42m 26.144999936s
+23:42:35.294 metrics.system - process.uptime{app.name=APP_NAME,server.name=SERVER_NAME} value=9.191s
+23:42:35.295 metrics.system - system.cpu.count{app.name=APP_NAME,server.name=SERVER_NAME} value=22
+23:42:35.295 metrics.system - system.cpu.usage{app.name=APP_NAME,server.name=SERVER_NAME} value=0.045224
+23:42:44.677 metrics.system - process.cpu.time{app.name=APP_NAME,server.name=SERVER_NAME} delta_count=1500000000 ns throughput=150000000 ns/s
+23:42:44.712 metrics.system - process.cpu.usage{app.name=APP_NAME,server.name=SERVER_NAME} value=0.001433
+23:42:44.712 metrics.system - process.start.time{app.name=APP_NAME,server.name=SERVER_NAME} value=485414h 42m 26.144999936s
+23:42:44.712 metrics.system - process.uptime{app.name=APP_NAME,server.name=SERVER_NAME} value=18.609s
+23:42:44.713 metrics.system - system.cpu.count{app.name=APP_NAME,server.name=SERVER_NAME} value=22
+23:42:44.713 metrics.system - system.cpu.usage{app.name=APP_NAME,server.name=SERVER_NAME} value=0.072321
+23:42:54.678 metrics.system - process.cpu.time{app.name=APP_NAME,server.name=SERVER_NAME} delta_count=187500000 ns throughput=18750000 ns/s
+23:42:54.715 metrics.system - process.cpu.usage{app.name=APP_NAME,server.name=SERVER_NAME} value=0.00047
+23:42:54.715 metrics.system - process.start.time{app.name=APP_NAME,server.name=SERVER_NAME} value=485414h 42m 26.144999936s
+23:42:54.715 metrics.system - process.uptime{app.name=APP_NAME,server.name=SERVER_NAME} value=28.611s
+23:42:54.715 metrics.system - system.cpu.count{app.name=APP_NAME,server.name=SERVER_NAME} value=22
+23:42:54.715 metrics.system - system.cpu.usage{app.name=APP_NAME,server.name=SERVER_NAME} value=0.08882
+23:43:04.678 metrics.system - process.cpu.time{app.name=APP_NAME,server.name=SERVER_NAME} delta_count=187500000 ns throughput=18750000 ns/s
+23:43:04.713 metrics.system - process.cpu.usage{app.name=APP_NAME,server.name=SERVER_NAME} value=0.001253
+23:43:04.714 metrics.system - process.start.time{app.name=APP_NAME,server.name=SERVER_NAME} value=485414h 42m 26.144999936s
+23:43:04.714 metrics.system - process.uptime{app.name=APP_NAME,server.name=SERVER_NAME} value=38.61s
+23:43:04.714 metrics.system - system.cpu.count{app.name=APP_NAME,server.name=SERVER_NAME} value=22
+23:43:04.714 metrics.system - system.cpu.usage{app.name=APP_NAME,server.name=SERVER_NAME} value=0.033333
+23:43:14.668 metrics.system - process.cpu.time{app.name=APP_NAME,server.name=SERVER_NAME} delta_count=187500000 ns throughput=18750000 ns/s
+23:43:14.701 metrics.system - process.cpu.usage{app.name=APP_NAME,server.name=SERVER_NAME} value=0.000549
+23:43:14.701 metrics.system - process.start.time{app.name=APP_NAME,server.name=SERVER_NAME} value=485414h 42m 26.144999936s
+23:43:14.702 metrics.system - process.uptime{app.name=APP_NAME,server.name=SERVER_NAME} value=48.598s
+23:43:14.702 metrics.system - system.cpu.count{app.name=APP_NAME,server.name=SERVER_NAME} value=22
+23:43:14.702 metrics.system - system.cpu.usage{app.name=APP_NAME,server.name=SERVER_NAME} value=0.068098
+23:43:24.669 metrics.system - process.cpu.time{app.name=APP_NAME,server.name=SERVER_NAME} delta_count=218750000 ns throughput=21875000 ns/s
+23:43:24.704 metrics.system - process.cpu.usage{app.name=APP_NAME,server.name=SERVER_NAME} value=0.000629
+23:43:24.704 metrics.system - process.start.time{app.name=APP_NAME,server.name=SERVER_NAME} value=485414h 42m 26.144999936s
+23:43:24.704 metrics.system - process.uptime{app.name=APP_NAME,server.name=SERVER_NAME} value=58.601s
+23:43:24.705 metrics.system - system.cpu.count{app.name=APP_NAME,server.name=SERVER_NAME} value=22
+23:43:24.705 metrics.system - system.cpu.usage{app.name=APP_NAME,server.name=SERVER_NAME} value=0.079857
+23:43:34.673 metrics.system - process.cpu.time{app.name=APP_NAME,server.name=SERVER_NAME} delta_count=203125000 ns throughput=20312500 ns/s
+23:43:34.714 metrics.system - process.cpu.usage{app.name=APP_NAME,server.name=SERVER_NAME} value=0.00094
+23:43:34.714 metrics.system - process.start.time{app.name=APP_NAME,server.name=SERVER_NAME} value=485414h 42m 26.144999936s
+23:43:34.714 metrics.system - process.uptime{app.name=APP_NAME,server.name=SERVER_NAME} value=1m 8.611s
+23:43:34.714 metrics.system - system.cpu.count{app.name=APP_NAME,server.name=SERVER_NAME} value=22
+23:43:34.715 metrics.system - system.cpu.usage{app.name=APP_NAME,server.name=SERVER_NAME} value=0.127497
+23:43:44.679 metrics.system - process.cpu.time{app.name=APP_NAME,server.name=SERVER_NAME} delta_count=140625000 ns throughput=14062500 ns/s
+23:43:44.729 metrics.system - process.cpu.usage{app.name=APP_NAME,server.name=SERVER_NAME} value=0.000391
+23:43:44.729 metrics.system - process.start.time{app.name=APP_NAME,server.name=SERVER_NAME} value=485414h 42m 26.144999936s
+23:43:44.731 metrics.system - process.uptime{app.name=APP_NAME,server.name=SERVER_NAME} value=1m 18.626s
+23:43:44.731 metrics.system - system.cpu.count{app.name=APP_NAME,server.name=SERVER_NAME} value=22
+23:43:44.732 metrics.system - system.cpu.usage{app.name=APP_NAME,server.name=SERVER_NAME} value=0.046379
+23:43:54.676 metrics.system - process.cpu.time{app.name=APP_NAME,server.name=SERVER_NAME} delta_count=171875000 ns throughput=17187500 ns/s
+23:43:54.742 metrics.system - process.cpu.usage{app.name=APP_NAME,server.name=SERVER_NAME} value=0.00094
+23:43:54.742 metrics.system - process.start.time{app.name=APP_NAME,server.name=SERVER_NAME} value=485414h 42m 26.144999936s
+23:43:54.742 metrics.system - process.uptime{app.name=APP_NAME,server.name=SERVER_NAME} value=1m 28.639s
+23:43:54.742 metrics.system - system.cpu.count{app.name=APP_NAME,server.name=SERVER_NAME} value=22
+23:43:54.744 metrics.system - system.cpu.usage{app.name=APP_NAME,server.name=SERVER_NAME} value=0.036759
+23:44:04.669 metrics.system - process.cpu.time{app.name=APP_NAME,server.name=SERVER_NAME} delta_count=312500000 ns throughput=31250000 ns/s
+23:44:04.727 metrics.system - process.cpu.usage{app.name=APP_NAME,server.name=SERVER_NAME} value=0.000784
+23:44:04.727 metrics.system - process.start.time{app.name=APP_NAME,server.name=SERVER_NAME} value=485414h 42m 26.144999936s
+23:44:04.727 metrics.system - process.uptime{app.name=APP_NAME,server.name=SERVER_NAME} value=1m 38.623s
+23:44:04.727 metrics.system - system.cpu.count{app.name=APP_NAME,server.name=SERVER_NAME} value=22
+23:44:04.728 metrics.system - system.cpu.usage{app.name=APP_NAME,server.name=SERVER_NAME} value=0.039105
+23:44:14.672 metrics.system - process.cpu.time{app.name=APP_NAME,server.name=SERVER_NAME} delta_count=187500000 ns throughput=18750000 ns/s
+23:44:14.712 metrics.system - process.cpu.usage{app.name=APP_NAME,server.name=SERVER_NAME} value=0.000471
+23:44:14.712 metrics.system - process.start.time{app.name=APP_NAME,server.name=SERVER_NAME} value=485414h 42m 26.144999936s
+23:44:14.712 metrics.system - process.uptime{app.name=APP_NAME,server.name=SERVER_NAME} value=1m 48.609s
+23:44:14.712 metrics.system - system.cpu.count{app.name=APP_NAME,server.name=SERVER_NAME} value=22
+23:44:14.712 metrics.system - system.cpu.usage{app.name=APP_NAME,server.name=SERVER_NAME} value=0.040662
+23:44:24.670 metrics.system - process.cpu.time{app.name=APP_NAME,server.name=SERVER_NAME} delta_count=109375000 ns throughput=10937500 ns/s
+23:44:24.734 metrics.system - process.cpu.usage{app.name=APP_NAME,server.name=SERVER_NAME} value=0.000859
+23:44:24.735 metrics.system - process.start.time{app.name=APP_NAME,server.name=SERVER_NAME} value=485414h 42m 26.144999936s
+23:44:24.735 metrics.system - process.uptime{app.name=APP_NAME,server.name=SERVER_NAME} value=1m 58.631s
+23:44:24.735 metrics.system - system.cpu.count{app.name=APP_NAME,server.name=SERVER_NAME} value=22
+23:44:24.735 metrics.system - system.cpu.usage{app.name=APP_NAME,server.name=SERVER_NAME} value=0.033294
+23:44:34.672 metrics.system - process.cpu.time{app.name=APP_NAME,server.name=SERVER_NAME} delta_count=312500000 ns throughput=31250000 ns/s
+23:44:34.714 metrics.system - process.cpu.usage{app.name=APP_NAME,server.name=SERVER_NAME} value=0.001333
+23:44:34.714 metrics.system - process.start.time{app.name=APP_NAME,server.name=SERVER_NAME} value=485414h 42m 26.144999936s
+23:44:34.714 metrics.system - process.uptime{app.name=APP_NAME,server.name=SERVER_NAME} value=2m 8.61s
+23:44:34.714 metrics.system - system.cpu.count{app.name=APP_NAME,server.name=SERVER_NAME} value=22
+23:44:34.714 metrics.system - system.cpu.usage{app.name=APP_NAME,server.name=SERVER_NAME} value=0.032523
+23:44:44.681 metrics.system - process.cpu.time{app.name=APP_NAME,server.name=SERVER_NAME} delta_count=203125000 ns throughput=20312500 ns/s
+23:44:44.718 metrics.system - process.cpu.usage{app.name=APP_NAME,server.name=SERVER_NAME} value=0.000235
+23:44:44.718 metrics.system - process.start.time{app.name=APP_NAME,server.name=SERVER_NAME} value=485414h 42m 26.144999936s
+23:44:44.718 metrics.system - process.uptime{app.name=APP_NAME,server.name=SERVER_NAME} value=2m 18.615s
+23:44:44.718 metrics.system - system.cpu.count{app.name=APP_NAME,server.name=SERVER_NAME} value=22
+23:44:44.719 metrics.system - system.cpu.usage{app.name=APP_NAME,server.name=SERVER_NAME} value=0.028305
+23:44:54.677 metrics.system - process.cpu.time{app.name=APP_NAME,server.name=SERVER_NAME} delta_count=328125000 ns throughput=32812500 ns/s
+23:44:54.710 metrics.system - process.cpu.usage{app.name=APP_NAME,server.name=SERVER_NAME} value=0.001495
+23:44:54.711 metrics.system - process.start.time{app.name=APP_NAME,server.name=SERVER_NAME} value=485414h 42m 26.144999936s
+23:44:54.711 metrics.system - process.uptime{app.name=APP_NAME,server.name=SERVER_NAME} value=2m 28.607s
+23:44:54.711 metrics.system - system.cpu.count{app.name=APP_NAME,server.name=SERVER_NAME} value=22
+23:44:54.711 metrics.system - system.cpu.usage{app.name=APP_NAME,server.name=SERVER_NAME} value=0.047604
+23:45:04.683 metrics.system - process.cpu.time{app.name=APP_NAME,server.name=SERVER_NAME} delta_count=265625000 ns throughput=26562500 ns/s
+23:45:04.728 metrics.system - process.cpu.usage{app.name=APP_NAME,server.name=SERVER_NAME} value=0.000938
+23:45:04.728 metrics.system - process.start.time{app.name=APP_NAME,server.name=SERVER_NAME} value=485414h 42m 26.144999936s
+23:45:04.728 metrics.system - process.uptime{app.name=APP_NAME,server.name=SERVER_NAME} value=2m 38.624s
+23:45:04.728 metrics.system - system.cpu.count{app.name=APP_NAME,server.name=SERVER_NAME} value=22
+23:45:04.728 metrics.system - system.cpu.usage{app.name=APP_NAME,server.name=SERVER_NAME} value=0.045176
+23:45:14.669 metrics.system - process.cpu.time{app.name=APP_NAME,server.name=SERVER_NAME} delta_count=156250000 ns throughput=15625000 ns/s
+23:45:14.709 metrics.system - process.cpu.usage{app.name=APP_NAME,server.name=SERVER_NAME} value=0.000628
+23:45:14.709 metrics.system - process.start.time{app.name=APP_NAME,server.name=SERVER_NAME} value=485414h 42m 26.144999936s
+23:45:14.709 metrics.system - process.uptime{app.name=APP_NAME,server.name=SERVER_NAME} value=2m 48.605s
+23:45:14.709 metrics.system - system.cpu.count{app.name=APP_NAME,server.name=SERVER_NAME} value=22
+23:45:14.709 metrics.system - system.cpu.usage{app.name=APP_NAME,server.name=SERVER_NAME} value=0.072724
+23:45:24.668 metrics.system - process.cpu.time{app.name=APP_NAME,server.name=SERVER_NAME} delta_count=140625000 ns throughput=14062500 ns/s
+23:45:24.701 metrics.system - process.cpu.usage{app.name=APP_NAME,server.name=SERVER_NAME} value=0.001882
+23:45:24.702 metrics.system - process.start.time{app.name=APP_NAME,server.name=SERVER_NAME} value=485414h 42m 26.144999936s
+23:45:24.702 metrics.system - process.uptime{app.name=APP_NAME,server.name=SERVER_NAME} value=2m 58.598s
+23:45:24.702 metrics.system - system.cpu.count{app.name=APP_NAME,server.name=SERVER_NAME} value=22
+23:45:24.702 metrics.system - system.cpu.usage{app.name=APP_NAME,server.name=SERVER_NAME} value=0.046867
+23:45:34.670 metrics.system - process.cpu.time{app.name=APP_NAME,server.name=SERVER_NAME} delta_count=421875000 ns throughput=42187500 ns/s
+23:45:34.704 metrics.system - process.cpu.usage{app.name=APP_NAME,server.name=SERVER_NAME} value=0.000235
+23:45:34.704 metrics.system - process.start.time{app.name=APP_NAME,server.name=SERVER_NAME} value=485414h 42m 26.144999936s
+23:45:34.704 metrics.system - process.uptime{app.name=APP_NAME,server.name=SERVER_NAME} value=3m 8.601s
+23:45:34.704 metrics.system - system.cpu.count{app.name=APP_NAME,server.name=SERVER_NAME} value=22
+23:45:34.704 metrics.system - system.cpu.usage{app.name=APP_NAME,server.name=SERVER_NAME} value=0.053737
+23:45:44.682 metrics.system - process.cpu.time{app.name=APP_NAME,server.name=SERVER_NAME} delta_count=62500000 ns throughput=6250000 ns/s
+23:45:44.714 metrics.system - process.cpu.usage{app.name=APP_NAME,server.name=SERVER_NAME} value=0.00047
+23:45:44.714 metrics.system - process.start.time{app.name=APP_NAME,server.name=SERVER_NAME} value=485414h 42m 26.144999936s
+23:45:44.714 metrics.system - process.uptime{app.name=APP_NAME,server.name=SERVER_NAME} value=3m 18.61s
+23:45:44.714 metrics.system - system.cpu.count{app.name=APP_NAME,server.name=SERVER_NAME} value=22
+23:45:44.714 metrics.system - system.cpu.usage{app.name=APP_NAME,server.name=SERVER_NAME} value=0.036
+23:45:54.668 metrics.system - process.cpu.time{app.name=APP_NAME,server.name=SERVER_NAME} delta_count=140625000 ns throughput=14062500 ns/s
+23:45:54.700 metrics.system - process.cpu.usage{app.name=APP_NAME,server.name=SERVER_NAME} value=0.000549
+23:45:54.700 metrics.system - process.start.time{app.name=APP_NAME,server.name=SERVER_NAME} value=485414h 42m 26.144999936s
+23:45:54.700 metrics.system - process.uptime{app.name=APP_NAME,server.name=SERVER_NAME} value=3m 28.596s
+23:45:54.700 metrics.system - system.cpu.count{app.name=APP_NAME,server.name=SERVER_NAME} value=22
+23:45:54.701 metrics.system - system.cpu.usage{app.name=APP_NAME,server.name=SERVER_NAME} value=0.03143
+23:46:04.677 metrics.system - process.cpu.time{app.name=APP_NAME,server.name=SERVER_NAME} delta_count=265625000 ns throughput=26562500 ns/s
+23:46:04.711 metrics.system - process.cpu.usage{app.name=APP_NAME,server.name=SERVER_NAME} value=0.001254
+23:46:04.711 metrics.system - process.start.time{app.name=APP_NAME,server.name=SERVER_NAME} value=485414h 42m 26.144999936s
+23:46:04.711 metrics.system - process.uptime{app.name=APP_NAME,server.name=SERVER_NAME} value=3m 38.607s
+23:46:04.711 metrics.system - system.cpu.count{app.name=APP_NAME,server.name=SERVER_NAME} value=22
+23:46:04.711 metrics.system - system.cpu.usage{app.name=APP_NAME,server.name=SERVER_NAME} value=0.064028
+23:46:14.674 metrics.system - process.cpu.time{app.name=APP_NAME,server.name=SERVER_NAME} delta_count=203125000 ns throughput=20312500 ns/s
+23:46:14.704 metrics.system - process.cpu.usage{app.name=APP_NAME,server.name=SERVER_NAME} value=0.001726
+23:46:14.704 metrics.system - process.start.time{app.name=APP_NAME,server.name=SERVER_NAME} value=485414h 42m 26.144999936s
+23:46:14.704 metrics.system - process.uptime{app.name=APP_NAME,server.name=SERVER_NAME} value=3m 48.6s
+23:46:14.704 metrics.system - system.cpu.count{app.name=APP_NAME,server.name=SERVER_NAME} value=22
+23:46:14.704 metrics.system - system.cpu.usage{app.name=APP_NAME,server.name=SERVER_NAME} value=0.031456
+23:46:24.684 metrics.system - process.cpu.time{app.name=APP_NAME,server.name=SERVER_NAME} delta_count=343750000 ns throughput=34375000 ns/s
+23:46:24.715 metrics.system - process.cpu.usage{app.name=APP_NAME,server.name=SERVER_NAME} value=0.003522
+23:46:24.715 metrics.system - process.start.time{app.name=APP_NAME,server.name=SERVER_NAME} value=485414h 42m 26.144999936s
+23:46:24.715 metrics.system - process.uptime{app.name=APP_NAME,server.name=SERVER_NAME} value=3m 58.612s
+23:46:24.716 metrics.system - system.cpu.count{app.name=APP_NAME,server.name=SERVER_NAME} value=22
+23:46:24.716 metrics.system - system.cpu.usage{app.name=APP_NAME,server.name=SERVER_NAME} value=0.045612
+23:46:34.674 metrics.system - process.cpu.time{app.name=APP_NAME,server.name=SERVER_NAME} delta_count=1062500000 ns throughput=106250000 ns/s
+23:46:34.703 metrics.system - process.cpu.usage{app.name=APP_NAME,server.name=SERVER_NAME} value=0.002118
+23:46:34.703 metrics.system - process.start.time{app.name=APP_NAME,server.name=SERVER_NAME} value=485414h 42m 26.144999936s
+23:46:34.703 metrics.system - process.uptime{app.name=APP_NAME,server.name=SERVER_NAME} value=4m 8.599s
+23:46:34.703 metrics.system - system.cpu.count{app.name=APP_NAME,server.name=SERVER_NAME} value=22
+23:46:34.703 metrics.system - system.cpu.usage{app.name=APP_NAME,server.name=SERVER_NAME} value=0.032872
+23:46:44.668 metrics.system - process.cpu.time{app.name=APP_NAME,server.name=SERVER_NAME} delta_count=140625000 ns throughput=14062500 ns/s
+23:46:44.699 metrics.system - process.cpu.usage{app.name=APP_NAME,server.name=SERVER_NAME} value=0.000549
+23:46:44.699 metrics.system - process.start.time{app.name=APP_NAME,server.name=SERVER_NAME} value=485414h 42m 26.144999936s
+23:46:44.699 metrics.system - process.uptime{app.name=APP_NAME,server.name=SERVER_NAME} value=4m 18.596s
+23:46:44.699 metrics.system - system.cpu.count{app.name=APP_NAME,server.name=SERVER_NAME} value=22
+23:46:44.699 metrics.system - system.cpu.usage{app.name=APP_NAME,server.name=SERVER_NAME} value=0.030944
+23:46:54.679 metrics.system - process.cpu.time{app.name=APP_NAME,server.name=SERVER_NAME} delta_count=265625000 ns throughput=26562500 ns/s
+23:46:54.704 metrics.system - process.cpu.usage{app.name=APP_NAME,server.name=SERVER_NAME} value=0.000784
+23:46:54.704 metrics.system - process.start.time{app.name=APP_NAME,server.name=SERVER_NAME} value=485414h 42m 26.144999936s
+23:46:54.704 metrics.system - process.uptime{app.name=APP_NAME,server.name=SERVER_NAME} value=4m 28.606s
+23:46:54.704 metrics.system - system.cpu.count{app.name=APP_NAME,server.name=SERVER_NAME} value=22
+23:46:54.704 metrics.system - system.cpu.usage{app.name=APP_NAME,server.name=SERVER_NAME} value=0.041693
+23:47:04.677 metrics.system - process.cpu.time{app.name=APP_NAME,server.name=SERVER_NAME} delta_count=250000000 ns throughput=25000000 ns/s
+23:47:04.706 metrics.system - process.cpu.usage{app.name=APP_NAME,server.name=SERVER_NAME} value=0.001334
+23:47:04.706 metrics.system - process.start.time{app.name=APP_NAME,server.name=SERVER_NAME} value=485414h 42m 26.144999936s
+23:47:04.706 metrics.system - process.uptime{app.name=APP_NAME,server.name=SERVER_NAME} value=4m 38.602s
+23:47:04.706 metrics.system - system.cpu.count{app.name=APP_NAME,server.name=SERVER_NAME} value=22
+23:47:04.706 metrics.system - system.cpu.usage{app.name=APP_NAME,server.name=SERVER_NAME} value=0.07964
+23:47:14.675 metrics.system - process.cpu.time{app.name=APP_NAME,server.name=SERVER_NAME} delta_count=203125000 ns throughput=20312500 ns/s
+23:47:14.704 metrics.system - process.cpu.usage{app.name=APP_NAME,server.name=SERVER_NAME} value=0.000157
+23:47:14.704 metrics.system - process.start.time{app.name=APP_NAME,server.name=SERVER_NAME} value=485414h 42m 26.144999936s
+23:47:14.704 metrics.system - process.uptime{app.name=APP_NAME,server.name=SERVER_NAME} value=4m 48.6s
+23:47:14.704 metrics.system - system.cpu.count{app.name=APP_NAME,server.name=SERVER_NAME} value=22
+23:47:14.704 metrics.system - system.cpu.usage{app.name=APP_NAME,server.name=SERVER_NAME} value=0.035205
+23:47:24.671 metrics.system - process.cpu.time{app.name=APP_NAME,server.name=SERVER_NAME} delta_count=62500000 ns throughput=6250000 ns/s
+23:47:24.700 metrics.system - process.cpu.usage{app.name=APP_NAME,server.name=SERVER_NAME} value=0.000235
+23:47:24.700 metrics.system - process.start.time{app.name=APP_NAME,server.name=SERVER_NAME} value=485414h 42m 26.144999936s
+23:47:24.700 metrics.system - process.uptime{app.name=APP_NAME,server.name=SERVER_NAME} value=4m 58.596s
+23:47:24.700 metrics.system - system.cpu.count{app.name=APP_NAME,server.name=SERVER_NAME} value=22
+23:47:24.700 metrics.system - system.cpu.usage{app.name=APP_NAME,server.name=SERVER_NAME} value=0.041425
+23:47:34.672 metrics.system - process.cpu.time{app.name=APP_NAME,server.name=SERVER_NAME} delta_count=78125000 ns throughput=7812500 ns/s
+23:47:34.700 metrics.system - process.cpu.usage{app.name=APP_NAME,server.name=SERVER_NAME} value=0.000235
+23:47:34.701 metrics.system - process.start.time{app.name=APP_NAME,server.name=SERVER_NAME} value=485414h 42m 26.144999936s
+23:47:34.701 metrics.system - process.uptime{app.name=APP_NAME,server.name=SERVER_NAME} value=5m 8.597s
+23:47:34.701 metrics.system - system.cpu.count{app.name=APP_NAME,server.name=SERVER_NAME} value=22
+23:47:34.701 metrics.system - system.cpu.usage{app.name=APP_NAME,server.name=SERVER_NAME} value=0.073673
+23:47:44.673 metrics.system - process.cpu.time{app.name=APP_NAME,server.name=SERVER_NAME} delta_count=125000000 ns throughput=12500000 ns/s
+23:47:44.707 metrics.system - process.cpu.usage{app.name=APP_NAME,server.name=SERVER_NAME} value=0.000705
+23:47:44.708 metrics.system - process.start.time{app.name=APP_NAME,server.name=SERVER_NAME} value=485414h 42m 26.144999936s
+23:47:44.708 metrics.system - process.uptime{app.name=APP_NAME,server.name=SERVER_NAME} value=5m 18.604s
+23:47:44.708 metrics.system - system.cpu.count{app.name=APP_NAME,server.name=SERVER_NAME} value=22
+23:47:44.708 metrics.system - system.cpu.usage{app.name=APP_NAME,server.name=SERVER_NAME} value=0.099623
+23:48:07.433 metrics.system - process.cpu.time{app.name=APP_NAME,server.name=SERVER_NAME} delta_count=9375000000 ns throughput=937500000 ns/s
+23:48:07.472 metrics.system - process.cpu.usage{app.name=APP_NAME,server.name=SERVER_NAME} value=0.002929
+23:48:07.472 metrics.system - process.start.time{app.name=APP_NAME,server.name=SERVER_NAME} value=485414h 47m 54.772s
+23:48:07.473 metrics.system - process.uptime{app.name=APP_NAME,server.name=SERVER_NAME} value=12.742s
+23:48:07.473 metrics.system - system.cpu.count{app.name=APP_NAME,server.name=SERVER_NAME} value=22
+23:48:07.473 metrics.system - system.cpu.usage{app.name=APP_NAME,server.name=SERVER_NAME} value=0.036818
+23:48:17.436 metrics.system - process.cpu.time{app.name=APP_NAME,server.name=SERVER_NAME} delta_count=7953125000 ns throughput=795312500 ns/s
+23:48:17.468 metrics.system - process.cpu.usage{app.name=APP_NAME,server.name=SERVER_NAME} value=0.000894
+23:48:17.470 metrics.system - process.start.time{app.name=APP_NAME,server.name=SERVER_NAME} value=485414h 47m 54.772s
+23:48:17.470 metrics.system - process.uptime{app.name=APP_NAME,server.name=SERVER_NAME} value=22.739s
+23:48:17.470 metrics.system - system.cpu.count{app.name=APP_NAME,server.name=SERVER_NAME} value=22
+23:48:17.470 metrics.system - system.cpu.usage{app.name=APP_NAME,server.name=SERVER_NAME} value=0.03873
+23:48:27.423 metrics.system - process.cpu.time{app.name=APP_NAME,server.name=SERVER_NAME} delta_count=296875000 ns throughput=29687500 ns/s
+23:48:27.452 metrics.system - process.cpu.usage{app.name=APP_NAME,server.name=SERVER_NAME} value=0.002236
+23:48:27.453 metrics.system - process.start.time{app.name=APP_NAME,server.name=SERVER_NAME} value=485414h 47m 54.772s
+23:48:27.453 metrics.system - process.uptime{app.name=APP_NAME,server.name=SERVER_NAME} value=32.722s
+23:48:27.453 metrics.system - system.cpu.count{app.name=APP_NAME,server.name=SERVER_NAME} value=22
+23:48:27.453 metrics.system - system.cpu.usage{app.name=APP_NAME,server.name=SERVER_NAME} value=0.042625
+23:48:37.438 metrics.system - process.cpu.time{app.name=APP_NAME,server.name=SERVER_NAME} delta_count=312500000 ns throughput=31250000 ns/s
+23:48:37.464 metrics.system - process.cpu.usage{app.name=APP_NAME,server.name=SERVER_NAME} value=0.002458
+23:48:37.464 metrics.system - process.start.time{app.name=APP_NAME,server.name=SERVER_NAME} value=485414h 47m 54.772s
+23:48:37.464 metrics.system - process.uptime{app.name=APP_NAME,server.name=SERVER_NAME} value=42.734s
+23:48:37.464 metrics.system - system.cpu.count{app.name=APP_NAME,server.name=SERVER_NAME} value=22
+23:48:37.464 metrics.system - system.cpu.usage{app.name=APP_NAME,server.name=SERVER_NAME} value=0.074246
+23:48:47.433 metrics.system - process.cpu.time{app.name=APP_NAME,server.name=SERVER_NAME} delta_count=203125000 ns throughput=20312500 ns/s
+23:48:47.464 metrics.system - process.cpu.usage{app.name=APP_NAME,server.name=SERVER_NAME} value=0.000892
+23:48:47.464 metrics.system - process.start.time{app.name=APP_NAME,server.name=SERVER_NAME} value=485414h 47m 54.772s
+23:48:47.464 metrics.system - process.uptime{app.name=APP_NAME,server.name=SERVER_NAME} value=52.734s
+23:48:47.464 metrics.system - system.cpu.count{app.name=APP_NAME,server.name=SERVER_NAME} value=22
+23:48:47.465 metrics.system - system.cpu.usage{app.name=APP_NAME,server.name=SERVER_NAME} value=0.056225
+23:49:01.224 metrics.system - process.cpu.time{app.name=APP_NAME,server.name=SERVER_NAME} delta_count=2312500000 ns throughput=231250000 ns/s
+23:49:01.916 metrics.system - process.cpu.usage{app.name=APP_NAME,server.name=SERVER_NAME} value=0.253219
+23:49:01.916 metrics.system - process.start.time{app.name=APP_NAME,server.name=SERVER_NAME} value=485414h 48m 56.209999872s
+23:49:01.917 metrics.system - process.uptime{app.name=APP_NAME,server.name=SERVER_NAME} value=5.745s
+23:49:01.917 metrics.system - system.cpu.count{app.name=APP_NAME,server.name=SERVER_NAME} value=22
+23:49:01.917 metrics.system - system.cpu.usage{app.name=APP_NAME,server.name=SERVER_NAME} value=0.240308
+23:49:11.219 metrics.system - process.cpu.time{app.name=APP_NAME,server.name=SERVER_NAME} delta_count=15812500000 ns throughput=1581250000 ns/s
+23:49:11.258 metrics.system - process.cpu.usage{app.name=APP_NAME,server.name=SERVER_NAME} value=0.00169
+23:49:11.259 metrics.system - process.start.time{app.name=APP_NAME,server.name=SERVER_NAME} value=485414h 48m 56.209999872s
+23:49:11.259 metrics.system - process.uptime{app.name=APP_NAME,server.name=SERVER_NAME} value=15.088s
+23:49:11.259 metrics.system - system.cpu.count{app.name=APP_NAME,server.name=SERVER_NAME} value=22
+23:49:11.259 metrics.system - system.cpu.usage{app.name=APP_NAME,server.name=SERVER_NAME} value=0.033702
+23:49:21.217 metrics.system - process.cpu.time{app.name=APP_NAME,server.name=SERVER_NAME} delta_count=281250000 ns throughput=28125000 ns/s
+23:49:21.249 metrics.system - process.cpu.usage{app.name=APP_NAME,server.name=SERVER_NAME} value=0.000605
+23:49:21.250 metrics.system - process.start.time{app.name=APP_NAME,server.name=SERVER_NAME} value=485414h 48m 56.209999872s
+23:49:21.250 metrics.system - process.uptime{app.name=APP_NAME,server.name=SERVER_NAME} value=25.078s
+23:49:21.250 metrics.system - system.cpu.count{app.name=APP_NAME,server.name=SERVER_NAME} value=22
+23:49:21.250 metrics.system - system.cpu.usage{app.name=APP_NAME,server.name=SERVER_NAME} value=0.027504
+23:49:31.227 metrics.system - process.cpu.time{app.name=APP_NAME,server.name=SERVER_NAME} delta_count=187500000 ns throughput=18750000 ns/s
+23:49:31.268 metrics.system - process.cpu.usage{app.name=APP_NAME,server.name=SERVER_NAME} value=0.000362
+23:49:31.270 metrics.system - process.start.time{app.name=APP_NAME,server.name=SERVER_NAME} value=485414h 48m 56.209999872s
+23:49:31.270 metrics.system - process.uptime{app.name=APP_NAME,server.name=SERVER_NAME} value=35.098s
+23:49:31.270 metrics.system - system.cpu.count{app.name=APP_NAME,server.name=SERVER_NAME} value=22
+23:49:31.271 metrics.system - system.cpu.usage{app.name=APP_NAME,server.name=SERVER_NAME} value=0.118173
+23:49:41.219 metrics.system - process.cpu.time{app.name=APP_NAME,server.name=SERVER_NAME} delta_count=218750000 ns throughput=21875000 ns/s
+23:49:41.262 metrics.system - process.cpu.usage{app.name=APP_NAME,server.name=SERVER_NAME} value=0.001811
+23:49:41.262 metrics.system - process.start.time{app.name=APP_NAME,server.name=SERVER_NAME} value=485414h 48m 56.209999872s
+23:49:41.262 metrics.system - process.uptime{app.name=APP_NAME,server.name=SERVER_NAME} value=45.091s
+23:49:41.262 metrics.system - system.cpu.count{app.name=APP_NAME,server.name=SERVER_NAME} value=22
+23:49:41.262 metrics.system - system.cpu.usage{app.name=APP_NAME,server.name=SERVER_NAME} value=0.068728
+23:49:51.938 metrics.system - process.cpu.time{app.name=APP_NAME,server.name=SERVER_NAME} delta_count=15046875000 ns throughput=1504687500 ns/s
+23:49:52.523 metrics.system - process.cpu.usage{app.name=APP_NAME,server.name=SERVER_NAME} value=0.047593
+23:49:52.523 metrics.system - process.start.time{app.name=APP_NAME,server.name=SERVER_NAME} value=485414h 49m 43.215000064s
+23:49:52.523 metrics.system - process.uptime{app.name=APP_NAME,server.name=SERVER_NAME} value=9.349s
+23:49:52.523 metrics.system - system.cpu.count{app.name=APP_NAME,server.name=SERVER_NAME} value=22
+23:49:52.526 metrics.system - system.cpu.usage{app.name=APP_NAME,server.name=SERVER_NAME} value=0
+23:50:01.922 metrics.system - process.cpu.time{app.name=APP_NAME,server.name=SERVER_NAME} delta_count=843750000 ns throughput=84375000 ns/s
+23:50:01.962 metrics.system - process.cpu.usage{app.name=APP_NAME,server.name=SERVER_NAME} value=0.00143
+23:50:01.962 metrics.system - process.start.time{app.name=APP_NAME,server.name=SERVER_NAME} value=485414h 49m 43.215000064s
+23:50:01.962 metrics.system - process.uptime{app.name=APP_NAME,server.name=SERVER_NAME} value=18.787s
+23:50:01.962 metrics.system - system.cpu.count{app.name=APP_NAME,server.name=SERVER_NAME} value=22
+23:50:01.962 metrics.system - system.cpu.usage{app.name=APP_NAME,server.name=SERVER_NAME} value=0.033818
+23:50:11.923 metrics.system - process.cpu.time{app.name=APP_NAME,server.name=SERVER_NAME} delta_count=375000000 ns throughput=37500000 ns/s
+23:50:11.955 metrics.system - process.cpu.usage{app.name=APP_NAME,server.name=SERVER_NAME} value=0.001492
+23:50:11.955 metrics.system - process.start.time{app.name=APP_NAME,server.name=SERVER_NAME} value=485414h 49m 43.215000064s
+23:50:11.955 metrics.system - process.uptime{app.name=APP_NAME,server.name=SERVER_NAME} value=28.78s
+23:50:11.955 metrics.system - system.cpu.count{app.name=APP_NAME,server.name=SERVER_NAME} value=22
+23:50:11.955 metrics.system - system.cpu.usage{app.name=APP_NAME,server.name=SERVER_NAME} value=0.093861
+23:50:21.925 metrics.system - process.cpu.time{app.name=APP_NAME,server.name=SERVER_NAME} delta_count=140625000 ns throughput=14062500 ns/s
+23:50:21.959 metrics.system - process.cpu.usage{app.name=APP_NAME,server.name=SERVER_NAME} value=0.000852
+23:50:21.959 metrics.system - process.start.time{app.name=APP_NAME,server.name=SERVER_NAME} value=485414h 49m 43.215000064s
+23:50:21.959 metrics.system - process.uptime{app.name=APP_NAME,server.name=SERVER_NAME} value=38.784s
+23:50:21.959 metrics.system - system.cpu.count{app.name=APP_NAME,server.name=SERVER_NAME} value=22
+23:50:21.959 metrics.system - system.cpu.usage{app.name=APP_NAME,server.name=SERVER_NAME} value=0.037321
+23:50:31.936 metrics.system - process.cpu.time{app.name=APP_NAME,server.name=SERVER_NAME} delta_count=312500000 ns throughput=31250000 ns/s
+23:50:31.971 metrics.system - process.cpu.usage{app.name=APP_NAME,server.name=SERVER_NAME} value=0.001277
+23:50:31.971 metrics.system - process.start.time{app.name=APP_NAME,server.name=SERVER_NAME} value=485414h 49m 43.215000064s
+23:50:31.971 metrics.system - process.uptime{app.name=APP_NAME,server.name=SERVER_NAME} value=48.796s
+23:50:31.971 metrics.system - system.cpu.count{app.name=APP_NAME,server.name=SERVER_NAME} value=22
+23:50:31.976 metrics.system - system.cpu.usage{app.name=APP_NAME,server.name=SERVER_NAME} value=0.028506
+23:50:41.936 metrics.system - process.cpu.time{app.name=APP_NAME,server.name=SERVER_NAME} delta_count=265625000 ns throughput=26562500 ns/s
+23:50:41.965 metrics.system - process.cpu.usage{app.name=APP_NAME,server.name=SERVER_NAME} value=0.001563
+23:50:41.966 metrics.system - process.start.time{app.name=APP_NAME,server.name=SERVER_NAME} value=485414h 49m 43.215000064s
+23:50:41.966 metrics.system - process.uptime{app.name=APP_NAME,server.name=SERVER_NAME} value=58.791s
+23:50:41.966 metrics.system - system.cpu.count{app.name=APP_NAME,server.name=SERVER_NAME} value=22
+23:50:41.966 metrics.system - system.cpu.usage{app.name=APP_NAME,server.name=SERVER_NAME} value=0.024732
+23:50:51.936 metrics.system - process.cpu.time{app.name=APP_NAME,server.name=SERVER_NAME} delta_count=281250000 ns throughput=28125000 ns/s
+23:50:51.965 metrics.system - process.cpu.usage{app.name=APP_NAME,server.name=SERVER_NAME} value=0.000994
+23:50:51.965 metrics.system - process.start.time{app.name=APP_NAME,server.name=SERVER_NAME} value=485414h 49m 43.215000064s
+23:50:51.965 metrics.system - process.uptime{app.name=APP_NAME,server.name=SERVER_NAME} value=1m 8.791s
+23:50:51.965 metrics.system - system.cpu.count{app.name=APP_NAME,server.name=SERVER_NAME} value=22
+23:50:51.966 metrics.system - system.cpu.usage{app.name=APP_NAME,server.name=SERVER_NAME} value=0.03407
+23:51:01.929 metrics.system - process.cpu.time{app.name=APP_NAME,server.name=SERVER_NAME} delta_count=140625000 ns throughput=14062500 ns/s
+23:51:01.980 metrics.system - process.cpu.usage{app.name=APP_NAME,server.name=SERVER_NAME} value=0.000709
+23:51:01.980 metrics.system - process.start.time{app.name=APP_NAME,server.name=SERVER_NAME} value=485414h 49m 43.215000064s
+23:51:01.980 metrics.system - process.uptime{app.name=APP_NAME,server.name=SERVER_NAME} value=1m 18.805s
+23:51:01.980 metrics.system - system.cpu.count{app.name=APP_NAME,server.name=SERVER_NAME} value=22
+23:51:01.988 metrics.system - system.cpu.usage{app.name=APP_NAME,server.name=SERVER_NAME} value=0.039936
+23:51:11.927 metrics.system - process.cpu.time{app.name=APP_NAME,server.name=SERVER_NAME} delta_count=203125000 ns throughput=20312500 ns/s
+23:51:11.957 metrics.system - process.cpu.usage{app.name=APP_NAME,server.name=SERVER_NAME} value=0.000641
+23:51:11.957 metrics.system - process.start.time{app.name=APP_NAME,server.name=SERVER_NAME} value=485414h 49m 43.215000064s
+23:51:11.957 metrics.system - process.uptime{app.name=APP_NAME,server.name=SERVER_NAME} value=1m 28.782s
+23:51:11.957 metrics.system - system.cpu.count{app.name=APP_NAME,server.name=SERVER_NAME} value=22
+23:51:11.957 metrics.system - system.cpu.usage{app.name=APP_NAME,server.name=SERVER_NAME} value=0.026582
+23:51:21.929 metrics.system - process.cpu.time{app.name=APP_NAME,server.name=SERVER_NAME} delta_count=78125000 ns throughput=7812500 ns/s
+23:51:21.962 metrics.system - process.cpu.usage{app.name=APP_NAME,server.name=SERVER_NAME} value=0.000426
+23:51:21.962 metrics.system - process.start.time{app.name=APP_NAME,server.name=SERVER_NAME} value=485414h 49m 43.215000064s
+23:51:21.962 metrics.system - process.uptime{app.name=APP_NAME,server.name=SERVER_NAME} value=1m 38.787s
+23:51:21.962 metrics.system - system.cpu.count{app.name=APP_NAME,server.name=SERVER_NAME} value=22
+23:51:21.962 metrics.system - system.cpu.usage{app.name=APP_NAME,server.name=SERVER_NAME} value=0.056724
+23:51:31.922 metrics.system - process.cpu.time{app.name=APP_NAME,server.name=SERVER_NAME} delta_count=125000000 ns throughput=12500000 ns/s
+23:51:31.948 metrics.system - process.cpu.usage{app.name=APP_NAME,server.name=SERVER_NAME} value=0.000569
+23:51:31.948 metrics.system - process.start.time{app.name=APP_NAME,server.name=SERVER_NAME} value=485414h 49m 43.215000064s
+23:51:31.948 metrics.system - process.uptime{app.name=APP_NAME,server.name=SERVER_NAME} value=1m 48.774s
+23:51:31.948 metrics.system - system.cpu.count{app.name=APP_NAME,server.name=SERVER_NAME} value=22
+23:51:31.948 metrics.system - system.cpu.usage{app.name=APP_NAME,server.name=SERVER_NAME} value=0.06984
+23:51:41.935 metrics.system - process.cpu.time{app.name=APP_NAME,server.name=SERVER_NAME} delta_count=93750000 ns throughput=9375000 ns/s
+23:51:41.962 metrics.system - process.cpu.usage{app.name=APP_NAME,server.name=SERVER_NAME} value=0.000426
+23:51:41.963 metrics.system - process.start.time{app.name=APP_NAME,server.name=SERVER_NAME} value=485414h 49m 43.215000064s
+23:51:41.963 metrics.system - process.uptime{app.name=APP_NAME,server.name=SERVER_NAME} value=1m 58.789s
+23:51:41.963 metrics.system - system.cpu.count{app.name=APP_NAME,server.name=SERVER_NAME} value=22
+23:51:41.965 metrics.system - system.cpu.usage{app.name=APP_NAME,server.name=SERVER_NAME} value=0.034078
+23:51:51.922 metrics.system - process.cpu.time{app.name=APP_NAME,server.name=SERVER_NAME} delta_count=109375000 ns throughput=10937500 ns/s
+23:51:51.997 metrics.system - process.cpu.usage{app.name=APP_NAME,server.name=SERVER_NAME} value=0.000849
+23:51:51.997 metrics.system - process.start.time{app.name=APP_NAME,server.name=SERVER_NAME} value=485414h 49m 43.215000064s
+23:51:51.997 metrics.system - process.uptime{app.name=APP_NAME,server.name=SERVER_NAME} value=2m 8.822s
+23:51:51.997 metrics.system - system.cpu.count{app.name=APP_NAME,server.name=SERVER_NAME} value=22
+23:51:52.002 metrics.system - system.cpu.usage{app.name=APP_NAME,server.name=SERVER_NAME} value=0.0482
+23:52:01.929 metrics.system - process.cpu.time{app.name=APP_NAME,server.name=SERVER_NAME} delta_count=250000000 ns throughput=25000000 ns/s
+23:52:01.966 metrics.system - process.cpu.usage{app.name=APP_NAME,server.name=SERVER_NAME} value=0.000784
+23:52:01.967 metrics.system - process.start.time{app.name=APP_NAME,server.name=SERVER_NAME} value=485414h 49m 43.215000064s
+23:52:01.967 metrics.system - process.uptime{app.name=APP_NAME,server.name=SERVER_NAME} value=2m 18.791s
+23:52:01.967 metrics.system - system.cpu.count{app.name=APP_NAME,server.name=SERVER_NAME} value=22
+23:52:01.967 metrics.system - system.cpu.usage{app.name=APP_NAME,server.name=SERVER_NAME} value=0.061012
+23:52:11.927 metrics.system - process.cpu.time{app.name=APP_NAME,server.name=SERVER_NAME} delta_count=125000000 ns throughput=12500000 ns/s
+23:52:11.959 metrics.system - process.cpu.usage{app.name=APP_NAME,server.name=SERVER_NAME} value=0.000782
+23:52:11.959 metrics.system - process.start.time{app.name=APP_NAME,server.name=SERVER_NAME} value=485414h 49m 43.215000064s
+23:52:11.959 metrics.system - process.uptime{app.name=APP_NAME,server.name=SERVER_NAME} value=2m 28.785s
+23:52:11.959 metrics.system - system.cpu.count{app.name=APP_NAME,server.name=SERVER_NAME} value=22
+23:52:11.959 metrics.system - system.cpu.usage{app.name=APP_NAME,server.name=SERVER_NAME} value=0.02473
+23:52:21.930 metrics.system - process.cpu.time{app.name=APP_NAME,server.name=SERVER_NAME} delta_count=171875000 ns throughput=17187500 ns/s
+23:52:22.021 metrics.system - process.cpu.usage{app.name=APP_NAME,server.name=SERVER_NAME} value=0.000847
+23:52:22.021 metrics.system - process.start.time{app.name=APP_NAME,server.name=SERVER_NAME} value=485414h 49m 43.215000064s
+23:52:22.021 metrics.system - process.uptime{app.name=APP_NAME,server.name=SERVER_NAME} value=2m 38.846s
+23:52:22.021 metrics.system - system.cpu.count{app.name=APP_NAME,server.name=SERVER_NAME} value=22
+23:52:22.026 metrics.system - system.cpu.usage{app.name=APP_NAME,server.name=SERVER_NAME} value=0.03479
+23:53:35.564 metrics.system - process.cpu.time{app.name=APP_NAME,server.name=SERVER_NAME} delta_count=2375000000 ns throughput=237500000 ns/s
+23:53:36.094 metrics.system - process.cpu.usage{app.name=APP_NAME,server.name=SERVER_NAME} value=0.029297
+23:53:36.094 metrics.system - process.start.time{app.name=APP_NAME,server.name=SERVER_NAME} value=485414h 53m 27.112999936s
+23:53:36.095 metrics.system - process.uptime{app.name=APP_NAME,server.name=SERVER_NAME} value=9.02s
+23:53:36.095 metrics.system - system.cpu.count{app.name=APP_NAME,server.name=SERVER_NAME} value=22
+23:53:36.095 metrics.system - system.cpu.usage{app.name=APP_NAME,server.name=SERVER_NAME} value=0.397435
+23:53:45.555 metrics.system - process.cpu.time{app.name=APP_NAME,server.name=SERVER_NAME} delta_count=1328125000 ns throughput=132812500 ns/s
+23:53:45.590 metrics.system - process.cpu.usage{app.name=APP_NAME,server.name=SERVER_NAME} value=0.001571
+23:53:45.591 metrics.system - process.start.time{app.name=APP_NAME,server.name=SERVER_NAME} value=485414h 53m 27.112999936s
+23:53:45.591 metrics.system - process.uptime{app.name=APP_NAME,server.name=SERVER_NAME} value=18.516s
+23:53:45.591 metrics.system - system.cpu.count{app.name=APP_NAME,server.name=SERVER_NAME} value=22
+23:53:45.591 metrics.system - system.cpu.usage{app.name=APP_NAME,server.name=SERVER_NAME} value=0.052942
+23:53:55.547 metrics.system - process.cpu.time{app.name=APP_NAME,server.name=SERVER_NAME} delta_count=281250000 ns throughput=28125000 ns/s
+23:53:55.602 metrics.system - process.cpu.usage{app.name=APP_NAME,server.name=SERVER_NAME} value=0.001592
+23:53:55.603 metrics.system - process.start.time{app.name=APP_NAME,server.name=SERVER_NAME} value=485414h 53m 27.112999936s
+23:53:55.603 metrics.system - process.uptime{app.name=APP_NAME,server.name=SERVER_NAME} value=28.528s
+23:53:55.603 metrics.system - system.cpu.count{app.name=APP_NAME,server.name=SERVER_NAME} value=22
+23:53:55.603 metrics.system - system.cpu.usage{app.name=APP_NAME,server.name=SERVER_NAME} value=0.109925
+23:54:05.547 metrics.system - process.cpu.time{app.name=APP_NAME,server.name=SERVER_NAME} delta_count=484375000 ns throughput=48437500 ns/s
+23:54:05.579 metrics.system - process.cpu.usage{app.name=APP_NAME,server.name=SERVER_NAME} value=0.001519
+23:54:05.579 metrics.system - process.start.time{app.name=APP_NAME,server.name=SERVER_NAME} value=485414h 53m 27.112999936s
+23:54:05.579 metrics.system - process.uptime{app.name=APP_NAME,server.name=SERVER_NAME} value=38.505s
+23:54:05.579 metrics.system - system.cpu.count{app.name=APP_NAME,server.name=SERVER_NAME} value=22
+23:54:05.580 metrics.system - system.cpu.usage{app.name=APP_NAME,server.name=SERVER_NAME} value=0.044011
+23:54:15.547 metrics.system - process.cpu.time{app.name=APP_NAME,server.name=SERVER_NAME} delta_count=468750000 ns throughput=46875000 ns/s
+23:54:15.579 metrics.system - process.cpu.usage{app.name=APP_NAME,server.name=SERVER_NAME} value=0.000759
+23:54:15.580 metrics.system - process.start.time{app.name=APP_NAME,server.name=SERVER_NAME} value=485414h 53m 27.112999936s
+23:54:15.580 metrics.system - process.uptime{app.name=APP_NAME,server.name=SERVER_NAME} value=48.505s
+23:54:15.580 metrics.system - system.cpu.count{app.name=APP_NAME,server.name=SERVER_NAME} value=22
+23:54:15.580 metrics.system - system.cpu.usage{app.name=APP_NAME,server.name=SERVER_NAME} value=0.096075
+23:54:25.551 metrics.system - process.cpu.time{app.name=APP_NAME,server.name=SERVER_NAME} delta_count=187500000 ns throughput=18750000 ns/s
+23:54:25.583 metrics.system - process.cpu.usage{app.name=APP_NAME,server.name=SERVER_NAME} value=0.000532
+23:54:25.584 metrics.system - process.start.time{app.name=APP_NAME,server.name=SERVER_NAME} value=485414h 53m 27.112999936s
+23:54:25.584 metrics.system - process.uptime{app.name=APP_NAME,server.name=SERVER_NAME} value=58.509s
+23:54:25.584 metrics.system - system.cpu.count{app.name=APP_NAME,server.name=SERVER_NAME} value=22
+23:54:25.584 metrics.system - system.cpu.usage{app.name=APP_NAME,server.name=SERVER_NAME} value=0.047445
+23:54:35.551 metrics.system - process.cpu.time{app.name=APP_NAME,server.name=SERVER_NAME} delta_count=125000000 ns throughput=12500000 ns/s
+23:54:35.589 metrics.system - process.cpu.usage{app.name=APP_NAME,server.name=SERVER_NAME} value=0.000531
+23:54:35.589 metrics.system - process.start.time{app.name=APP_NAME,server.name=SERVER_NAME} value=485414h 53m 27.112999936s
+23:54:35.589 metrics.system - process.uptime{app.name=APP_NAME,server.name=SERVER_NAME} value=1m 8.514s
+23:54:35.589 metrics.system - system.cpu.count{app.name=APP_NAME,server.name=SERVER_NAME} value=22
+23:54:35.589 metrics.system - system.cpu.usage{app.name=APP_NAME,server.name=SERVER_NAME} value=0.02973
+23:54:45.545 metrics.system - process.cpu.time{app.name=APP_NAME,server.name=SERVER_NAME} delta_count=140625000 ns throughput=14062500 ns/s
+23:54:45.573 metrics.system - process.cpu.usage{app.name=APP_NAME,server.name=SERVER_NAME} value=0.000607
+23:54:45.574 metrics.system - process.start.time{app.name=APP_NAME,server.name=SERVER_NAME} value=485414h 53m 27.112999936s
+23:54:45.574 metrics.system - process.uptime{app.name=APP_NAME,server.name=SERVER_NAME} value=1m 18.499s
+23:54:45.574 metrics.system - system.cpu.count{app.name=APP_NAME,server.name=SERVER_NAME} value=22
+23:54:45.574 metrics.system - system.cpu.usage{app.name=APP_NAME,server.name=SERVER_NAME} value=0.037402
+23:54:55.557 metrics.system - process.cpu.time{app.name=APP_NAME,server.name=SERVER_NAME} delta_count=156250000 ns throughput=15625000 ns/s
+23:54:55.587 metrics.system - process.cpu.usage{app.name=APP_NAME,server.name=SERVER_NAME} value=0.00129
+23:54:55.587 metrics.system - process.start.time{app.name=APP_NAME,server.name=SERVER_NAME} value=485414h 53m 27.112999936s
+23:54:55.587 metrics.system - process.uptime{app.name=APP_NAME,server.name=SERVER_NAME} value=1m 28.512s
+23:54:55.587 metrics.system - system.cpu.count{app.name=APP_NAME,server.name=SERVER_NAME} value=22
+23:54:55.588 metrics.system - system.cpu.usage{app.name=APP_NAME,server.name=SERVER_NAME} value=0.047855
+23:55:05.547 metrics.system - process.cpu.time{app.name=APP_NAME,server.name=SERVER_NAME} delta_count=250000000 ns throughput=25000000 ns/s
+23:55:05.577 metrics.system - process.cpu.usage{app.name=APP_NAME,server.name=SERVER_NAME} value=0.00038
+23:55:05.577 metrics.system - process.start.time{app.name=APP_NAME,server.name=SERVER_NAME} value=485414h 53m 27.112999936s
+23:55:05.577 metrics.system - process.uptime{app.name=APP_NAME,server.name=SERVER_NAME} value=1m 38.502s
+23:55:05.577 metrics.system - system.cpu.count{app.name=APP_NAME,server.name=SERVER_NAME} value=22
+23:55:05.577 metrics.system - system.cpu.usage{app.name=APP_NAME,server.name=SERVER_NAME} value=0.060862
+23:55:15.545 metrics.system - process.cpu.time{app.name=APP_NAME,server.name=SERVER_NAME} delta_count=125000000 ns throughput=12500000 ns/s
+23:55:15.576 metrics.system - process.cpu.usage{app.name=APP_NAME,server.name=SERVER_NAME} value=0.00038
+23:55:15.576 metrics.system - process.start.time{app.name=APP_NAME,server.name=SERVER_NAME} value=485414h 53m 27.112999936s
+23:55:15.576 metrics.system - process.uptime{app.name=APP_NAME,server.name=SERVER_NAME} value=1m 48.502s
+23:55:15.576 metrics.system - system.cpu.count{app.name=APP_NAME,server.name=SERVER_NAME} value=22
+23:55:15.576 metrics.system - system.cpu.usage{app.name=APP_NAME,server.name=SERVER_NAME} value=0.022728
+23:55:25.556 metrics.system - process.cpu.time{app.name=APP_NAME,server.name=SERVER_NAME} delta_count=109375000 ns throughput=10937500 ns/s
+23:55:25.586 metrics.system - process.cpu.usage{app.name=APP_NAME,server.name=SERVER_NAME} value=0.00038
+23:55:25.586 metrics.system - process.start.time{app.name=APP_NAME,server.name=SERVER_NAME} value=485414h 53m 27.112999936s
+23:55:25.586 metrics.system - process.uptime{app.name=APP_NAME,server.name=SERVER_NAME} value=1m 58.511s
+23:55:25.586 metrics.system - system.cpu.count{app.name=APP_NAME,server.name=SERVER_NAME} value=22
+23:55:25.586 metrics.system - system.cpu.usage{app.name=APP_NAME,server.name=SERVER_NAME} value=0.024054
+23:55:35.556 metrics.system - process.cpu.time{app.name=APP_NAME,server.name=SERVER_NAME} delta_count=171875000 ns throughput=17187500 ns/s
+23:55:35.579 metrics.system - process.cpu.usage{app.name=APP_NAME,server.name=SERVER_NAME} value=0.000304
+23:55:35.579 metrics.system - process.start.time{app.name=APP_NAME,server.name=SERVER_NAME} value=485414h 53m 27.112999936s
+23:55:35.579 metrics.system - process.uptime{app.name=APP_NAME,server.name=SERVER_NAME} value=2m 8.513s
+23:55:35.579 metrics.system - system.cpu.count{app.name=APP_NAME,server.name=SERVER_NAME} value=22
+23:55:35.579 metrics.system - system.cpu.usage{app.name=APP_NAME,server.name=SERVER_NAME} value=0.047522
+23:55:45.545 metrics.system - process.cpu.time{app.name=APP_NAME,server.name=SERVER_NAME} delta_count=78125000 ns throughput=7812500 ns/s
+23:55:45.579 metrics.system - process.cpu.usage{app.name=APP_NAME,server.name=SERVER_NAME} value=0.000456
+23:55:45.580 metrics.system - process.start.time{app.name=APP_NAME,server.name=SERVER_NAME} value=485414h 53m 27.112999936s
+23:55:45.580 metrics.system - process.uptime{app.name=APP_NAME,server.name=SERVER_NAME} value=2m 18.505s
+23:55:45.580 metrics.system - system.cpu.count{app.name=APP_NAME,server.name=SERVER_NAME} value=22
+23:55:45.580 metrics.system - system.cpu.usage{app.name=APP_NAME,server.name=SERVER_NAME} value=0.037323
+23:55:55.556 metrics.system - process.cpu.time{app.name=APP_NAME,server.name=SERVER_NAME} delta_count=109375000 ns throughput=10937500 ns/s
+23:55:55.605 metrics.system - process.cpu.usage{app.name=APP_NAME,server.name=SERVER_NAME} value=0.000152
+23:55:55.605 metrics.system - process.start.time{app.name=APP_NAME,server.name=SERVER_NAME} value=485414h 53m 27.112999936s
+23:55:55.605 metrics.system - process.uptime{app.name=APP_NAME,server.name=SERVER_NAME} value=2m 28.531s
+23:55:55.605 metrics.system - system.cpu.count{app.name=APP_NAME,server.name=SERVER_NAME} value=22
+23:55:55.606 metrics.system - system.cpu.usage{app.name=APP_NAME,server.name=SERVER_NAME} value=0.046723
+23:56:05.553 metrics.system - process.cpu.time{app.name=APP_NAME,server.name=SERVER_NAME} delta_count=62500000 ns throughput=6250000 ns/s
+23:56:05.584 metrics.system - process.cpu.usage{app.name=APP_NAME,server.name=SERVER_NAME} value=0.000228
+23:56:05.584 metrics.system - process.start.time{app.name=APP_NAME,server.name=SERVER_NAME} value=485414h 53m 27.112999936s
+23:56:05.584 metrics.system - process.uptime{app.name=APP_NAME,server.name=SERVER_NAME} value=2m 38.51s
+23:56:05.584 metrics.system - system.cpu.count{app.name=APP_NAME,server.name=SERVER_NAME} value=22
+23:56:05.584 metrics.system - system.cpu.usage{app.name=APP_NAME,server.name=SERVER_NAME} value=0.089125
+23:56:15.545 metrics.system - process.cpu.time{app.name=APP_NAME,server.name=SERVER_NAME} delta_count=93750000 ns throughput=9375000 ns/s
+23:56:15.574 metrics.system - process.cpu.usage{app.name=APP_NAME,server.name=SERVER_NAME} value=0.000911
+23:56:15.574 metrics.system - process.start.time{app.name=APP_NAME,server.name=SERVER_NAME} value=485414h 53m 27.112999936s
+23:56:15.574 metrics.system - process.uptime{app.name=APP_NAME,server.name=SERVER_NAME} value=2m 48.504s
+23:56:15.574 metrics.system - system.cpu.count{app.name=APP_NAME,server.name=SERVER_NAME} value=22
+23:56:15.574 metrics.system - system.cpu.usage{app.name=APP_NAME,server.name=SERVER_NAME} value=0.05799
+23:56:25.549 metrics.system - process.cpu.time{app.name=APP_NAME,server.name=SERVER_NAME} delta_count=421875000 ns throughput=42187500 ns/s
+23:56:25.579 metrics.system - process.cpu.usage{app.name=APP_NAME,server.name=SERVER_NAME} value=0.001746
+23:56:25.579 metrics.system - process.start.time{app.name=APP_NAME,server.name=SERVER_NAME} value=485414h 53m 27.112999936s
+23:56:25.579 metrics.system - process.uptime{app.name=APP_NAME,server.name=SERVER_NAME} value=2m 58.509s
+23:56:25.579 metrics.system - system.cpu.count{app.name=APP_NAME,server.name=SERVER_NAME} value=22
+23:56:25.579 metrics.system - system.cpu.usage{app.name=APP_NAME,server.name=SERVER_NAME} value=0.045482
+23:56:35.554 metrics.system - process.cpu.time{app.name=APP_NAME,server.name=SERVER_NAME} delta_count=218750000 ns throughput=21875000 ns/s
+23:56:35.593 metrics.system - process.cpu.usage{app.name=APP_NAME,server.name=SERVER_NAME} value=0.001213
+23:56:35.593 metrics.system - process.start.time{app.name=APP_NAME,server.name=SERVER_NAME} value=485414h 53m 27.112999936s
+23:56:35.593 metrics.system - process.uptime{app.name=APP_NAME,server.name=SERVER_NAME} value=3m 8.518s
+23:56:35.593 metrics.system - system.cpu.count{app.name=APP_NAME,server.name=SERVER_NAME} value=22
+23:56:35.594 metrics.system - system.cpu.usage{app.name=APP_NAME,server.name=SERVER_NAME} value=0.048674
+23:56:45.555 metrics.system - process.cpu.time{app.name=APP_NAME,server.name=SERVER_NAME} delta_count=265625000 ns throughput=26562500 ns/s
+23:56:45.594 metrics.system - process.cpu.usage{app.name=APP_NAME,server.name=SERVER_NAME} value=0.000456
+23:56:45.596 metrics.system - process.start.time{app.name=APP_NAME,server.name=SERVER_NAME} value=485414h 53m 27.112999936s
+23:56:45.596 metrics.system - process.uptime{app.name=APP_NAME,server.name=SERVER_NAME} value=3m 18.521s
+23:56:45.596 metrics.system - system.cpu.count{app.name=APP_NAME,server.name=SERVER_NAME} value=22
+23:56:45.596 metrics.system - system.cpu.usage{app.name=APP_NAME,server.name=SERVER_NAME} value=0.091354
+23:56:55.551 metrics.system - process.cpu.time{app.name=APP_NAME,server.name=SERVER_NAME} delta_count=125000000 ns throughput=12500000 ns/s
+23:56:55.579 metrics.system - process.cpu.usage{app.name=APP_NAME,server.name=SERVER_NAME} value=0.000152
+23:56:55.579 metrics.system - process.start.time{app.name=APP_NAME,server.name=SERVER_NAME} value=485414h 53m 27.112999936s
+23:56:55.579 metrics.system - process.uptime{app.name=APP_NAME,server.name=SERVER_NAME} value=3m 28.507s
+23:56:55.579 metrics.system - system.cpu.count{app.name=APP_NAME,server.name=SERVER_NAME} value=22
+23:56:55.579 metrics.system - system.cpu.usage{app.name=APP_NAME,server.name=SERVER_NAME} value=0.046125
+23:57:05.552 metrics.system - process.cpu.time{app.name=APP_NAME,server.name=SERVER_NAME} delta_count=93750000 ns throughput=9375000 ns/s
+23:57:05.600 metrics.system - process.cpu.usage{app.name=APP_NAME,server.name=SERVER_NAME} value=0.000454
+23:57:05.601 metrics.system - process.start.time{app.name=APP_NAME,server.name=SERVER_NAME} value=485414h 53m 27.112999936s
+23:57:05.601 metrics.system - process.uptime{app.name=APP_NAME,server.name=SERVER_NAME} value=3m 38.526s
+23:57:05.601 metrics.system - system.cpu.count{app.name=APP_NAME,server.name=SERVER_NAME} value=22
+23:57:05.601 metrics.system - system.cpu.usage{app.name=APP_NAME,server.name=SERVER_NAME} value=0.02991
+23:57:15.545 metrics.system - process.cpu.time{app.name=APP_NAME,server.name=SERVER_NAME} delta_count=203125000 ns throughput=20312500 ns/s
+23:57:15.577 metrics.system - process.cpu.usage{app.name=APP_NAME,server.name=SERVER_NAME} value=0.000684
+23:57:15.577 metrics.system - process.start.time{app.name=APP_NAME,server.name=SERVER_NAME} value=485414h 53m 27.112999936s
+23:57:15.578 metrics.system - process.uptime{app.name=APP_NAME,server.name=SERVER_NAME} value=3m 48.503s
+23:57:15.578 metrics.system - system.cpu.count{app.name=APP_NAME,server.name=SERVER_NAME} value=22
+23:57:15.578 metrics.system - system.cpu.usage{app.name=APP_NAME,server.name=SERVER_NAME} value=0.062913
+23:57:25.544 metrics.system - process.cpu.time{app.name=APP_NAME,server.name=SERVER_NAME} delta_count=1203125000 ns throughput=120312500 ns/s
+23:57:25.575 metrics.system - process.cpu.usage{app.name=APP_NAME,server.name=SERVER_NAME} value=0.007988
+23:57:25.575 metrics.system - process.start.time{app.name=APP_NAME,server.name=SERVER_NAME} value=485414h 53m 27.112999936s
+23:57:25.575 metrics.system - process.uptime{app.name=APP_NAME,server.name=SERVER_NAME} value=3m 58.5s
+23:57:25.575 metrics.system - system.cpu.count{app.name=APP_NAME,server.name=SERVER_NAME} value=22
+23:57:25.576 metrics.system - system.cpu.usage{app.name=APP_NAME,server.name=SERVER_NAME} value=0.057415
+23:57:35.552 metrics.system - process.cpu.time{app.name=APP_NAME,server.name=SERVER_NAME} delta_count=875000000 ns throughput=87500000 ns/s
+23:57:35.578 metrics.system - process.cpu.usage{app.name=APP_NAME,server.name=SERVER_NAME} value=0.001671
+23:57:35.578 metrics.system - process.start.time{app.name=APP_NAME,server.name=SERVER_NAME} value=485414h 53m 27.112999936s
+23:57:35.578 metrics.system - process.uptime{app.name=APP_NAME,server.name=SERVER_NAME} value=4m 8.504s
+23:57:35.578 metrics.system - system.cpu.count{app.name=APP_NAME,server.name=SERVER_NAME} value=22
+23:57:35.579 metrics.system - system.cpu.usage{app.name=APP_NAME,server.name=SERVER_NAME} value=0.048123
+23:57:45.550 metrics.system - process.cpu.time{app.name=APP_NAME,server.name=SERVER_NAME} delta_count=203125000 ns throughput=20312500 ns/s
+23:57:45.603 metrics.system - process.cpu.usage{app.name=APP_NAME,server.name=SERVER_NAME} value=0.000984
+23:57:45.603 metrics.system - process.start.time{app.name=APP_NAME,server.name=SERVER_NAME} value=485414h 53m 27.112999936s
+23:57:45.604 metrics.system - process.uptime{app.name=APP_NAME,server.name=SERVER_NAME} value=4m 18.529s
+23:57:45.604 metrics.system - system.cpu.count{app.name=APP_NAME,server.name=SERVER_NAME} value=22
+23:57:45.604 metrics.system - system.cpu.usage{app.name=APP_NAME,server.name=SERVER_NAME} value=0.03614
+23:57:55.550 metrics.system - process.cpu.time{app.name=APP_NAME,server.name=SERVER_NAME} delta_count=218750000 ns throughput=21875000 ns/s
+23:57:55.596 metrics.system - process.cpu.usage{app.name=APP_NAME,server.name=SERVER_NAME} value=0.000531
+23:57:55.596 metrics.system - process.start.time{app.name=APP_NAME,server.name=SERVER_NAME} value=485414h 53m 27.112999936s
+23:57:55.597 metrics.system - process.uptime{app.name=APP_NAME,server.name=SERVER_NAME} value=4m 28.521s
+23:57:55.597 metrics.system - system.cpu.count{app.name=APP_NAME,server.name=SERVER_NAME} value=22
+23:57:55.597 metrics.system - system.cpu.usage{app.name=APP_NAME,server.name=SERVER_NAME} value=0.033714
+23:58:05.553 metrics.system - process.cpu.time{app.name=APP_NAME,server.name=SERVER_NAME} delta_count=187500000 ns throughput=18750000 ns/s
+23:58:05.585 metrics.system - process.cpu.usage{app.name=APP_NAME,server.name=SERVER_NAME} value=0.000531
+23:58:05.587 metrics.system - process.start.time{app.name=APP_NAME,server.name=SERVER_NAME} value=485414h 53m 27.112999936s
+23:58:05.587 metrics.system - process.uptime{app.name=APP_NAME,server.name=SERVER_NAME} value=4m 38.512s
+23:58:05.587 metrics.system - system.cpu.count{app.name=APP_NAME,server.name=SERVER_NAME} value=22
+23:58:05.587 metrics.system - system.cpu.usage{app.name=APP_NAME,server.name=SERVER_NAME} value=0.059576
+23:58:15.551 metrics.system - process.cpu.time{app.name=APP_NAME,server.name=SERVER_NAME} delta_count=156250000 ns throughput=15625000 ns/s
+23:58:15.583 metrics.system - process.cpu.usage{app.name=APP_NAME,server.name=SERVER_NAME} value=0.000456
+23:58:15.584 metrics.system - process.start.time{app.name=APP_NAME,server.name=SERVER_NAME} value=485414h 53m 27.112999936s
+23:58:15.584 metrics.system - process.uptime{app.name=APP_NAME,server.name=SERVER_NAME} value=4m 48.509s
+23:58:15.584 metrics.system - system.cpu.count{app.name=APP_NAME,server.name=SERVER_NAME} value=22
+23:58:15.584 metrics.system - system.cpu.usage{app.name=APP_NAME,server.name=SERVER_NAME} value=0.055927
+23:58:25.557 metrics.system - process.cpu.time{app.name=APP_NAME,server.name=SERVER_NAME} delta_count=125000000 ns throughput=12500000 ns/s
+23:58:25.590 metrics.system - process.cpu.usage{app.name=APP_NAME,server.name=SERVER_NAME} value=0.001213
+23:58:25.590 metrics.system - process.start.time{app.name=APP_NAME,server.name=SERVER_NAME} value=485414h 53m 27.112999936s
+23:58:25.590 metrics.system - process.uptime{app.name=APP_NAME,server.name=SERVER_NAME} value=4m 58.515s
+23:58:25.590 metrics.system - system.cpu.count{app.name=APP_NAME,server.name=SERVER_NAME} value=22
+23:58:25.590 metrics.system - system.cpu.usage{app.name=APP_NAME,server.name=SERVER_NAME} value=0.088379
+23:58:35.548 metrics.system - process.cpu.time{app.name=APP_NAME,server.name=SERVER_NAME} delta_count=328125000 ns throughput=32812500 ns/s
+23:58:35.576 metrics.system - process.cpu.usage{app.name=APP_NAME,server.name=SERVER_NAME} value=0.000532
+23:58:35.576 metrics.system - process.start.time{app.name=APP_NAME,server.name=SERVER_NAME} value=485414h 53m 27.112999936s
+23:58:35.576 metrics.system - process.uptime{app.name=APP_NAME,server.name=SERVER_NAME} value=5m 8.502s
+23:58:35.576 metrics.system - system.cpu.count{app.name=APP_NAME,server.name=SERVER_NAME} value=22
+23:58:35.576 metrics.system - system.cpu.usage{app.name=APP_NAME,server.name=SERVER_NAME} value=0.051197
+23:58:45.546 metrics.system - process.cpu.time{app.name=APP_NAME,server.name=SERVER_NAME} delta_count=78125000 ns throughput=7812500 ns/s
+23:58:45.575 metrics.system - process.cpu.usage{app.name=APP_NAME,server.name=SERVER_NAME} value=0.000304
+23:58:45.576 metrics.system - process.start.time{app.name=APP_NAME,server.name=SERVER_NAME} value=485414h 53m 27.112999936s
+23:58:45.576 metrics.system - process.uptime{app.name=APP_NAME,server.name=SERVER_NAME} value=5m 18.501s
+23:58:45.576 metrics.system - system.cpu.count{app.name=APP_NAME,server.name=SERVER_NAME} value=22
+23:58:45.576 metrics.system - system.cpu.usage{app.name=APP_NAME,server.name=SERVER_NAME} value=0.081516
+23:58:55.557 metrics.system - process.cpu.time{app.name=APP_NAME,server.name=SERVER_NAME} delta_count=93750000 ns throughput=9375000 ns/s
+23:58:55.585 metrics.system - process.cpu.usage{app.name=APP_NAME,server.name=SERVER_NAME} value=0.000456
+23:58:55.585 metrics.system - process.start.time{app.name=APP_NAME,server.name=SERVER_NAME} value=485414h 53m 27.112999936s
+23:58:55.585 metrics.system - process.uptime{app.name=APP_NAME,server.name=SERVER_NAME} value=5m 28.511s
+23:58:55.585 metrics.system - system.cpu.count{app.name=APP_NAME,server.name=SERVER_NAME} value=22
+23:58:55.586 metrics.system - system.cpu.usage{app.name=APP_NAME,server.name=SERVER_NAME} value=0.02958
+23:59:05.553 metrics.system - process.cpu.time{app.name=APP_NAME,server.name=SERVER_NAME} delta_count=140625000 ns throughput=14062500 ns/s
+23:59:05.586 metrics.system - process.cpu.usage{app.name=APP_NAME,server.name=SERVER_NAME} value=0.000532
+23:59:05.586 metrics.system - process.start.time{app.name=APP_NAME,server.name=SERVER_NAME} value=485414h 53m 27.112999936s
+23:59:05.586 metrics.system - process.uptime{app.name=APP_NAME,server.name=SERVER_NAME} value=5m 38.511s
+23:59:05.586 metrics.system - system.cpu.count{app.name=APP_NAME,server.name=SERVER_NAME} value=22
+23:59:17.123 metrics.system - process.cpu.time{app.name=APP_NAME,server.name=SERVER_NAME} delta_count=2687500000 ns throughput=268750000 ns/s
+23:59:17.153 metrics.system - process.cpu.usage{app.name=APP_NAME,server.name=SERVER_NAME} value=0.11552
+23:59:17.153 metrics.system - process.start.time{app.name=APP_NAME,server.name=SERVER_NAME} value=485414h 59m 6.809999872s
+23:59:17.153 metrics.system - process.uptime{app.name=APP_NAME,server.name=SERVER_NAME} value=10.381s
+23:59:17.153 metrics.system - system.cpu.count{app.name=APP_NAME,server.name=SERVER_NAME} value=22
+23:59:17.154 metrics.system - system.cpu.usage{app.name=APP_NAME,server.name=SERVER_NAME} value=0.16881
+23:59:27.121 metrics.system - process.cpu.time{app.name=APP_NAME,server.name=SERVER_NAME} delta_count=17546875000 ns throughput=1754687500 ns/s
+23:59:27.166 metrics.system - process.cpu.usage{app.name=APP_NAME,server.name=SERVER_NAME} value=0.000535
+23:59:27.166 metrics.system - process.start.time{app.name=APP_NAME,server.name=SERVER_NAME} value=485414h 59m 6.809999872s
+23:59:27.167 metrics.system - process.uptime{app.name=APP_NAME,server.name=SERVER_NAME} value=20.394s
+23:59:27.167 metrics.system - system.cpu.count{app.name=APP_NAME,server.name=SERVER_NAME} value=22
+23:59:27.168 metrics.system - system.cpu.usage{app.name=APP_NAME,server.name=SERVER_NAME} value=0.041461
+23:59:37.122 metrics.system - process.cpu.time{app.name=APP_NAME,server.name=SERVER_NAME} delta_count=156250000 ns throughput=15625000 ns/s
+23:59:37.156 metrics.system - process.cpu.usage{app.name=APP_NAME,server.name=SERVER_NAME} value=0.000214
+23:59:37.156 metrics.system - process.start.time{app.name=APP_NAME,server.name=SERVER_NAME} value=485414h 59m 6.809999872s
+23:59:37.156 metrics.system - process.uptime{app.name=APP_NAME,server.name=SERVER_NAME} value=30.384s
+23:59:37.157 metrics.system - system.cpu.count{app.name=APP_NAME,server.name=SERVER_NAME} value=22
+23:59:37.157 metrics.system - system.cpu.usage{app.name=APP_NAME,server.name=SERVER_NAME} value=0.039506
+23:59:47.123 metrics.system - process.cpu.time{app.name=APP_NAME,server.name=SERVER_NAME} delta_count=62500000 ns throughput=6250000 ns/s
+23:59:47.156 metrics.system - process.cpu.usage{app.name=APP_NAME,server.name=SERVER_NAME} value=0.000536
+23:59:47.156 metrics.system - process.start.time{app.name=APP_NAME,server.name=SERVER_NAME} value=485414h 59m 6.809999872s
+23:59:47.156 metrics.system - process.uptime{app.name=APP_NAME,server.name=SERVER_NAME} value=40.383s
+23:59:47.156 metrics.system - system.cpu.count{app.name=APP_NAME,server.name=SERVER_NAME} value=22
+23:59:47.156 metrics.system - system.cpu.usage{app.name=APP_NAME,server.name=SERVER_NAME} value=0.034517
+23:59:57.120 metrics.system - process.cpu.time{app.name=APP_NAME,server.name=SERVER_NAME} delta_count=109375000 ns throughput=10937500 ns/s
+23:59:57.155 metrics.system - process.cpu.usage{app.name=APP_NAME,server.name=SERVER_NAME} value=0.001499
+23:59:57.156 metrics.system - process.start.time{app.name=APP_NAME,server.name=SERVER_NAME} value=485414h 59m 6.809999872s
+23:59:57.156 metrics.system - process.uptime{app.name=APP_NAME,server.name=SERVER_NAME} value=50.383s
+23:59:57.156 metrics.system - system.cpu.count{app.name=APP_NAME,server.name=SERVER_NAME} value=22
+23:59:57.156 metrics.system - system.cpu.usage{app.name=APP_NAME,server.name=SERVER_NAME} value=0.040987
