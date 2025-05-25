@@ -12,7 +12,6 @@ import org.springframework.kafka.core.*;
 import org.springframework.kafka.listener.ContainerProperties;
 import org.springframework.kafka.listener.KafkaMessageListenerContainer;
 import org.springframework.kafka.listener.MessageListener;
-import org.springframework.kafka.support.KafkaHeaders;
 import org.springframework.kafka.support.serializer.JsonDeserializer;
 
 import java.util.HashMap;
@@ -40,14 +39,14 @@ public class ReplyKafkaWrapper implements MessageListener<String, KafkaMsg> {
         Map<String, Object> producerProps = new HashMap<>();
         producerProps.put(ProducerConfig.BOOTSTRAP_SERVERS_CONFIG, bootStrapServers);
         producerProps.put(ProducerConfig.KEY_SERIALIZER_CLASS_CONFIG, StringSerializer.class);
-        producerProps.put(ProducerConfig.VALUE_SERIALIZER_CLASS_CONFIG, KafkaMsgJsonSerializer.class);
+        producerProps.put(ProducerConfig.VALUE_SERIALIZER_CLASS_CONFIG, KafkaMsgSerializer.class);
         this.producerFactory = new DefaultKafkaProducerFactory<>(producerProps);
 
         // consumer factory
         Map<String, Object> consumerProps = new HashMap<>();
         consumerProps.put(ConsumerConfig.BOOTSTRAP_SERVERS_CONFIG, bootStrapServers);
         consumerProps.put(ConsumerConfig.KEY_DESERIALIZER_CLASS_CONFIG, StringDeserializer.class);
-        consumerProps.put(ConsumerConfig.VALUE_DESERIALIZER_CLASS_CONFIG, KafkaMsgJsonDeserializer.class);
+        consumerProps.put(ConsumerConfig.VALUE_DESERIALIZER_CLASS_CONFIG, KafkaMsgDeserializer.class);
         consumerProps.put(ConsumerConfig.GROUP_INSTANCE_ID_CONFIG, "consumer-instance-3");
         consumerProps.put(ConsumerConfig.GROUP_ID_CONFIG, "group3");
         consumerProps.put(JsonDeserializer.TRUSTED_PACKAGES, "com.younho");
@@ -67,9 +66,9 @@ public class ReplyKafkaWrapper implements MessageListener<String, KafkaMsg> {
 
     @Override
     public void onMessage(ConsumerRecord<String, KafkaMsg> data) {
-        byte[] correlationId = data.value().getKafkaCorrelationId();
-        String replyTopic = data.value().getKafkaReplyTopic();
-        String replyPartition = data.value().getKafkaReplyPartition();
+        byte[] correlationId = data.value().getCorrelationId();
+        String replyTopic = data.value().getReplyTopic();
+        Integer replyPartition = data.value().getReplyPartition();
 
         if (correlationId == null) {
             logger.info("[RCVD] message={}", data.value());
@@ -81,10 +80,11 @@ public class ReplyKafkaWrapper implements MessageListener<String, KafkaMsg> {
         if (correlationId != null && replyTopic != null) {
             // 응답 메시지 생성
             KafkaMsg message = new KafkaMsg();
-            message.setStringField("REPLY_MESSAGE");
-            message.setKafkaCorrelationId(correlationId);
-            message.setKafkaReplyTopic(replyTopic);
-            message.setKafkaReplyPartition(replyPartition);
+            Map<String, Object> map = message.getValue();
+            map.put("TEST_REPLY_MESSAGE_KEY", "TEST_REPLY_MESSAGE_VALUE");
+            message.setCorrelationId(correlationId);
+            message.setReplyTopic(replyTopic);
+            message.setReplyPartition(replyPartition);
 
             ProducerRecord<String, KafkaMsg> record = new ProducerRecord<>(replyTopic, message);
 

@@ -63,10 +63,12 @@ public class Main {
         Thread.sleep(5000);
 
         KafkaMsg kafkaMsg = new KafkaMsg();
-        kafkaMsg.setStringField("TEST_A_FIELD");
-        kafkaMsg.setObjectField(null);
-        kafkaMsg.setBooleanField(true);
-        kafkaMsg.setByteArrayField("TEST_BYTE_ARRAY".getBytes());
+        kafkaMsg.setKey("TEST_KEY");
+
+        Map<String, Object> map = kafkaMsg.getValue();
+        map.put("TEST_VALUE", "TEST_VALUE");
+
+        kafkaMsg.setValue(map);
 
 //        try {
 //            kafkaWrapper.send(kafkaMsg);

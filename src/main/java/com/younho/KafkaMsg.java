@@ -1,83 +1,83 @@
 package com.younho;
 
-import java.util.Arrays;
+import org.springframework.kafka.support.KafkaHeaders;
+
+import java.nio.ByteBuffer;
+import java.nio.charset.StandardCharsets;
+import java.util.HashMap;
+import java.util.Map;
 
 public class KafkaMsg {
-    private String kafkaReplyTopic;
-    private byte[] kafkaCorrelationId;
-    private String kafkaReplyPartition;
+    private String key;
+    private Map<String, Object> value = new HashMap<>();
+    private Map<String, byte[]> headers = new HashMap<>();
 
-    String stringField;
-    Object objectField;
-    boolean booleanField;
-    byte[] byteArrayField;
-
-    public byte[] getByteArrayField() {
-        return byteArrayField;
+    // 기본 생성자
+    public KafkaMsg() {
     }
 
-    public void setByteArrayField(byte[] byteArrayField) {
-        this.byteArrayField = byteArrayField;
+    public KafkaMsg(String key, Map<String, Object> value, Map<String, byte[]> headers) {
+        this.key = key;
+        this.value = value;
+        this.headers = headers;
     }
 
-    public Object getObjectField() {
-        return objectField;
+    public String getKey() {
+        return key;
     }
 
-    public void setObjectField(Object objectField) {
-        this.objectField = objectField;
+    public void setKey(String key) {
+        this.key = key;
     }
 
-    public String getStringField() {
-        return stringField;
+    public Map<String, Object> getValue() {
+        return value;
     }
 
-    public void setStringField(String stringField) {
-        this.stringField = stringField;
+    public void setValue(Map<String, Object> value) {
+        this.value = value;
     }
 
-    public boolean isBooleanField() {
-        return booleanField;
+    public Map<String, byte[]> getHeaders() {
+        return headers;
     }
 
-    public void setBooleanField(boolean booleanField) {
-        this.booleanField = booleanField;
+    public void setHeaders(Map<String, byte[]> headers) {
+        this.headers = headers;
     }
 
-    public String getKafkaReplyTopic() {
-        return kafkaReplyTopic;
+    public byte[] getCorrelationId() {
+        return headers.get(KafkaHeaders.CORRELATION_ID);
     }
 
-    public void setKafkaReplyTopic(String kafkaReplyTopic) {
-        this.kafkaReplyTopic = kafkaReplyTopic;
+    public byte[] setCorrelationId(byte[] correlationId) {
+        return headers.put(KafkaHeaders.CORRELATION_ID, correlationId);
     }
 
-    public byte[] getKafkaCorrelationId() {
-        return kafkaCorrelationId;
+    // replyTopic도 보통 String (topic명)으로 사용
+    public String getReplyTopic() {
+        byte[] val = headers.get(KafkaHeaders.REPLY_TOPIC);
+        return val == null ? null : new String(val, StandardCharsets.UTF_8);
     }
 
-    public void setKafkaCorrelationId(byte[] kafkaCorrelationId) {
-        this.kafkaCorrelationId = kafkaCorrelationId;
+    public void setReplyTopic(String replyTopic) {
+        headers.put(KafkaHeaders.REPLY_TOPIC, replyTopic.getBytes(StandardCharsets.UTF_8));
     }
 
-    public String getKafkaReplyPartition() {
-        return kafkaReplyPartition;
+    public Integer getReplyPartition() {
+        byte[] val = headers.get(KafkaHeaders.REPLY_PARTITION);
+        if (val == null || val.length != 4) return null;
+        return ByteBuffer.wrap(val).getInt();
     }
 
-    public void setKafkaReplyPartition(String kafkaReplyPartition) {
-        this.kafkaReplyPartition = kafkaReplyPartition;
-    }
-
-    @Override
-    public String toString() {
-        return "KafkaMsg{" +
-                "replyTopic='" + kafkaReplyTopic + '\'' +
-                ", correlationId='" + kafkaCorrelationId + '\'' +
-                ", replyPartition=" + kafkaReplyPartition +
-                ", stringField='" + stringField + '\'' +
-                ", objectField=" + objectField +
-                ", booleanField=" + booleanField +
-                ", byteArrayField=" + Arrays.toString(byteArrayField) +
-                '}';
+    public void setReplyPartition(Integer partition) {
+        if (partition == null) {
+            headers.remove(KafkaHeaders.REPLY_PARTITION);
+            return;
+        }
+        // int → 4-byte big-endian 변환
+        ByteBuffer buffer = ByteBuffer.allocate(4);
+        buffer.putInt(partition);
+        headers.put(KafkaHeaders.REPLY_PARTITION, buffer.array());
     }
 }
