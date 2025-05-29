@@ -15,6 +15,10 @@ public class KafkaMsg {
     public KafkaMsg() {
     }
 
+    public void update(String key, Object value) {
+        this.value.put(key, value);
+    }
+
     public Map<String, Object> getValue() {
         return value;
     }
