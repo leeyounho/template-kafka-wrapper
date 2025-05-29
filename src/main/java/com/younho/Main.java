@@ -8,6 +8,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.annotation.AnnotationConfigApplicationContext;
+import org.springframework.kafka.support.serializer.ErrorHandlingDeserializer;
 import org.springframework.kafka.support.serializer.JsonDeserializer;
 import org.springframework.kafka.support.serializer.JsonSerializer;
 
@@ -26,7 +27,7 @@ public class Main {
         Map<String, Object> producerProps = new HashMap<>();
         producerProps.put(ProducerConfig.BOOTSTRAP_SERVERS_CONFIG, bootstrapServers);
         producerProps.put(ProducerConfig.KEY_SERIALIZER_CLASS_CONFIG, StringSerializer.class);
-        producerProps.put(ProducerConfig.VALUE_SERIALIZER_CLASS_CONFIG, JsonSerializer.class);
+        producerProps.put(ProducerConfig.VALUE_SERIALIZER_CLASS_CONFIG, KafkaMsgSerializer.class);
         producerProps.put(ProducerConfig.ACKS_CONFIG, "all");
         producerProps.put(ProducerConfig.LINGER_MS_CONFIG, 0);
         producerProps.put(ProducerConfig.DELIVERY_TIMEOUT_MS_CONFIG, 120000);
@@ -35,16 +36,20 @@ public class Main {
 
         Map<String, Object> consumerProps = new HashMap<>();
         consumerProps.put(ConsumerConfig.BOOTSTRAP_SERVERS_CONFIG, bootstrapServers);
-        consumerProps.put(ConsumerConfig.KEY_DESERIALIZER_CLASS_CONFIG, StringDeserializer.class);
-        consumerProps.put(ConsumerConfig.VALUE_DESERIALIZER_CLASS_CONFIG, JsonDeserializer.class);
+        consumerProps.put(ConsumerConfig.KEY_DESERIALIZER_CLASS_CONFIG, ErrorHandlingDeserializer.class);
+        consumerProps.put(ConsumerConfig.VALUE_DESERIALIZER_CLASS_CONFIG, ErrorHandlingDeserializer.class);
+        consumerProps.put(ErrorHandlingDeserializer.KEY_DESERIALIZER_CLASS, StringDeserializer.class);
+        consumerProps.put(ErrorHandlingDeserializer.VALUE_DESERIALIZER_CLASS, KafkaMsgDeserializer.class);
         consumerProps.put(ConsumerConfig.GROUP_ID_CONFIG, "my-group");
         consumerProps.put(JsonDeserializer.TRUSTED_PACKAGES, "*");
         consumerProps.put(ConsumerConfig.PARTITION_ASSIGNMENT_STRATEGY_CONFIG, "org.apache.kafka.clients.consumer.CooperativeStickyAssignor");
 
         Map<String, Object> replyConsumerProps = new HashMap<>();
         replyConsumerProps.put(ConsumerConfig.BOOTSTRAP_SERVERS_CONFIG, bootstrapServers);
-        replyConsumerProps.put(ConsumerConfig.KEY_DESERIALIZER_CLASS_CONFIG, StringDeserializer.class);
-        replyConsumerProps.put(ConsumerConfig.VALUE_DESERIALIZER_CLASS_CONFIG, JsonDeserializer.class);
+        replyConsumerProps.put(ConsumerConfig.KEY_DESERIALIZER_CLASS_CONFIG, ErrorHandlingDeserializer.class);
+        replyConsumerProps.put(ConsumerConfig.VALUE_DESERIALIZER_CLASS_CONFIG, ErrorHandlingDeserializer.class);
+        replyConsumerProps.put(ErrorHandlingDeserializer.KEY_DESERIALIZER_CLASS, StringDeserializer.class);
+        replyConsumerProps.put(ErrorHandlingDeserializer.VALUE_DESERIALIZER_CLASS, KafkaMsgDeserializer.class);
         replyConsumerProps.put(ConsumerConfig.GROUP_ID_CONFIG, "my-group" + "-reply"); // TODO
         replyConsumerProps.put(JsonDeserializer.TRUSTED_PACKAGES, "*");
         replyConsumerProps.put(ConsumerConfig.PARTITION_ASSIGNMENT_STRATEGY_CONFIG, "org.apache.kafka.clients.consumer.CooperativeStickyAssignor");
@@ -54,7 +59,7 @@ public class Main {
         kafkaConfig.setReplyConsumerProps(replyConsumerProps);
         kafkaConfig.setMySubject("TEST-TOPIC");
         kafkaConfig.setDestSubject("TEST-TOPIC-2");
-        KafkaWrapper<KafkaMsg> kafkaWrapper = kafkaConfig.createInstance();
+        KafkaWrapper kafkaWrapper = kafkaConfig.createInstance();
         kafkaWrapper.init();
 
         ReplyKafkaWrapper replyKafkaWrapper = new ReplyKafkaWrapper("localhost:9092", "TEST-TOPIC-2", "TEST-TOPIC");
@@ -63,7 +68,7 @@ public class Main {
         Thread.sleep(5000);
 
         KafkaMsg kafkaMsg = new KafkaMsg();
-        kafkaMsg.setKey("TEST_KEY");
+//        kafkaMsg.setKey("TEST_KEY");
 
         Map<String, Object> map = kafkaMsg.getValue();
         map.put("TEST_VALUE", "TEST_VALUE");

@@ -16,17 +16,17 @@ import org.springframework.kafka.support.SendResult;
 import java.time.Duration;
 import java.util.concurrent.TimeUnit;
 
-public class KafkaWrapper<T> implements MessageListener<String, T> {
+public class KafkaWrapper implements MessageListener<String, KafkaMsg> {
     private static final Logger logger = LoggerFactory.getLogger(KafkaWrapper.class);
 
     private KafkaConfig kafkaConfig;
 
-    private ProducerFactory<String, T> producerFactory;
-    private ConsumerFactory<String, T> consumerFactory;
-    private ConsumerFactory<String, T> replyConsumerFactory;
-    private KafkaMessageListenerContainer<String, T> container;
-    private KafkaTemplate<String, T> kafkaTemplate;
-    private ReplyingKafkaTemplate<String, T, T> replyingKafkaTemplate;
+    private ProducerFactory<String, KafkaMsg> producerFactory;
+    private ConsumerFactory<String, KafkaMsg> consumerFactory;
+    private ConsumerFactory<String, KafkaMsg> replyConsumerFactory;
+    private KafkaMessageListenerContainer<String, KafkaMsg> container;
+    private KafkaTemplate<String, KafkaMsg> kafkaTemplate;
+    private ReplyingKafkaTemplate<String, KafkaMsg, KafkaMsg> replyingKafkaTemplate;
 
     private MicrometerProducerListener producerMeterRegistry;
     private MicrometerConsumerListener consumerMeterRegistry;
@@ -49,7 +49,7 @@ public class KafkaWrapper<T> implements MessageListener<String, T> {
         this.replyConsumerFactory = new DefaultKafkaConsumerFactory<>(kafkaConfig.getReplyConsumerProps());
 
         ContainerProperties replyContainerProps = new ContainerProperties(kafkaConfig.getMySubject());
-        KafkaMessageListenerContainer<String, T> replyContainer = new KafkaMessageListenerContainer<>(replyConsumerFactory, replyContainerProps);
+        KafkaMessageListenerContainer<String, KafkaMsg> replyContainer = new KafkaMessageListenerContainer<>(replyConsumerFactory, replyContainerProps);
 
         this.kafkaTemplate = new KafkaTemplate<>(producerFactory);
         this.replyingKafkaTemplate = new ReplyingKafkaTemplate<>(producerFactory, replyContainer);
@@ -72,13 +72,13 @@ public class KafkaWrapper<T> implements MessageListener<String, T> {
     }
 
     @Override
-    public void onMessage(ConsumerRecord<String, T> data) {
+    public void onMessage(ConsumerRecord<String, KafkaMsg> data) {
         if (data.headers().lastHeader(KafkaHeaders.CORRELATION_ID) != null) return; // reply 메시지 처리는 replyContainer 에서 처리하기 위해 무시
-        T message = data.value();
+        KafkaMsg message = data.value();
         logger.info("[RCVD] topic={}, message={} correlationId={}", data.topic(), message, data.headers().lastHeader(KafkaHeaders.CORRELATION_ID));
     }
 
-    public void sendKafkaAsynchronous(T message) {
+    public void sendKafkaAsynchronous(KafkaMsg message) {
         kafkaTemplate.send(kafkaConfig.getDestSubject(), message)
                 .addCallback(
                         result -> logger.info("[SEND] topic={} message={}", kafkaConfig.getDestSubject(), message),
@@ -86,21 +86,21 @@ public class KafkaWrapper<T> implements MessageListener<String, T> {
                 );
     }
 
-    public void sendKafka(T message) {
+    public void sendKafka(KafkaMsg message) {
         try {
-            SendResult<String, T> sendResult = kafkaTemplate.send(kafkaConfig.getDestSubject(), message).get(kafkaConfig.getTimeout(), TimeUnit.SECONDS);
+            SendResult<String, KafkaMsg> sendResult = kafkaTemplate.send(kafkaConfig.getDestSubject(), message).get(kafkaConfig.getTimeout(), TimeUnit.SECONDS);
             logger.info("[SEND] topic={} message={}", kafkaConfig.getDestSubject(), message);
         } catch (Exception e) {
             logger.error("[SEND] send failed", e);
         }
     }
 
-    public T sendKafkaRequest(T message) {
-        T replyMessage = null;
+    public KafkaMsg sendKafkaRequest(KafkaMsg message) {
+        KafkaMsg replyMessage = null;
         try {
-            ProducerRecord<String, T> record = new ProducerRecord<>(kafkaConfig.getDestSubject(), message);
-            RequestReplyFuture<String, T, T> reply = replyingKafkaTemplate.sendAndReceive(record, Duration.ofSeconds(60));
-            SendResult<String, T> sendResult = reply.getSendFuture().get();
+            ProducerRecord<String, KafkaMsg> record = new ProducerRecord<>(kafkaConfig.getDestSubject(), message);
+            RequestReplyFuture<String, KafkaMsg, KafkaMsg> reply = replyingKafkaTemplate.sendAndReceive(record, Duration.ofSeconds(60));
+            SendResult<String, KafkaMsg> sendResult = reply.getSendFuture().get();
             logger.info("[REQUEST] correlationId={} topic={} message={}", sendResult.getProducerRecord().headers().lastHeader(KafkaHeaders.CORRELATION_ID).value(), kafkaConfig.getDestSubject(), message);
             replyMessage = reply.get(kafkaConfig.getTimeout(), TimeUnit.SECONDS).value();
             logger.info("[REQUEST] replyMessage={}", replyMessage);

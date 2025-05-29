@@ -13,10 +13,6 @@ import java.util.Map;
 @Component
 @Scope("prototype")
 public class KafkaConfig {
-    public enum KafkaWrapperType {
-        STRING, KAFKA_MSG
-    }
-
     private String mySubject;
     private String destSubject;
     private long timeout = 60L;
@@ -24,8 +20,6 @@ public class KafkaConfig {
     private Map<String, Object> producerProps = new HashMap<>();
     private Map<String, Object> consumerProps = new HashMap<>();
     private Map<String, Object> replyConsumerProps = new HashMap<>();
-
-    private KafkaWrapperType type = KafkaWrapperType.STRING;
 
     @Autowired(required = false)
     private MeterRegistry kafkaProducerMeterRegistry;
@@ -39,9 +33,7 @@ public class KafkaConfig {
 
 
     public KafkaWrapper createInstance() {
-        KafkaWrapper kafkaWrapper;
-        if (KafkaWrapperType.KAFKA_MSG.equals(type)) kafkaWrapper = new KafkaWrapper<KafkaMsg>(this);
-        else kafkaWrapper = new KafkaWrapper<String>(this);
+        KafkaWrapper kafkaWrapper = new KafkaWrapper(this);
 
         kafkaWrapper.setProducerMeterRegistry(new MicrometerProducerListener<>(kafkaProducerMeterRegistry));
         kafkaWrapper.setConsumerMeterRegistry(new MicrometerConsumerListener<>(kafkaConsumerMeterRegistry));

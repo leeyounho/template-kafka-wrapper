@@ -1,5 +1,6 @@
 package com.younho;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import org.springframework.kafka.support.KafkaHeaders;
 
 import java.nio.ByteBuffer;
@@ -8,26 +9,10 @@ import java.util.HashMap;
 import java.util.Map;
 
 public class KafkaMsg {
-    private String key;
     private Map<String, Object> value = new HashMap<>();
     private Map<String, byte[]> headers = new HashMap<>();
 
-    // 기본 생성자
     public KafkaMsg() {
-    }
-
-    public KafkaMsg(String key, Map<String, Object> value, Map<String, byte[]> headers) {
-        this.key = key;
-        this.value = value;
-        this.headers = headers;
-    }
-
-    public String getKey() {
-        return key;
-    }
-
-    public void setKey(String key) {
-        this.key = key;
     }
 
     public Map<String, Object> getValue() {
@@ -42,6 +27,7 @@ public class KafkaMsg {
         return headers;
     }
 
+    @JsonIgnore
     public void setHeaders(Map<String, byte[]> headers) {
         this.headers = headers;
     }
@@ -50,6 +36,7 @@ public class KafkaMsg {
         return headers.get(KafkaHeaders.CORRELATION_ID);
     }
 
+    @JsonIgnore
     public byte[] setCorrelationId(byte[] correlationId) {
         return headers.put(KafkaHeaders.CORRELATION_ID, correlationId);
     }
@@ -60,6 +47,7 @@ public class KafkaMsg {
         return val == null ? null : new String(val, StandardCharsets.UTF_8);
     }
 
+    @JsonIgnore
     public void setReplyTopic(String replyTopic) {
         headers.put(KafkaHeaders.REPLY_TOPIC, replyTopic.getBytes(StandardCharsets.UTF_8));
     }
@@ -70,6 +58,7 @@ public class KafkaMsg {
         return ByteBuffer.wrap(val).getInt();
     }
 
+    @JsonIgnore
     public void setReplyPartition(Integer partition) {
         if (partition == null) {
             headers.remove(KafkaHeaders.REPLY_PARTITION);
