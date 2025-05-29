@@ -10,7 +10,6 @@ import org.springframework.context.ApplicationContext;
 import org.springframework.context.annotation.AnnotationConfigApplicationContext;
 import org.springframework.kafka.support.serializer.ErrorHandlingDeserializer;
 import org.springframework.kafka.support.serializer.JsonDeserializer;
-import org.springframework.kafka.support.serializer.JsonSerializer;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -82,7 +81,7 @@ public class Main {
 //        Thread.sleep(3000);
 
         try {
-            kafkaWrapper.sendKafkaRequest(kafkaMsg);
+            kafkaWrapper.sendRequest(kafkaMsg);
         } catch (Exception e) {
         }
     }

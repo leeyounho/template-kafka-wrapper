@@ -64,48 +64,51 @@ public class KafkaWrapper implements MessageListener<String, KafkaMsg> {
         this.replyingKafkaTemplate.start();
     }
 
-    // TODO stop 으로 하는게 좋은지?
     public void destroy() {
-        if (container != null) container.destroy();
-        if (kafkaTemplate != null) kafkaTemplate.destroy();
-        if (replyingKafkaTemplate != null) replyingKafkaTemplate.destroy();
+        ((DefaultKafkaProducerFactory<?, ?>) kafkaTemplate.getProducerFactory()).destroy();
+        ((DefaultKafkaProducerFactory<?, ?>) replyingKafkaTemplate.getProducerFactory()).destroy();
+        container.stop();
     }
 
     @Override
     public void onMessage(ConsumerRecord<String, KafkaMsg> data) {
         if (data.headers().lastHeader(KafkaHeaders.CORRELATION_ID) != null) return; // reply 메시지 처리는 replyContainer 에서 처리하기 위해 무시
         KafkaMsg message = data.value();
-        logger.info("[RCVD] topic={}, message={} correlationId={}", data.topic(), message, data.headers().lastHeader(KafkaHeaders.CORRELATION_ID));
+        logger.info("[onMessage] topic={}, message={} correlationId={}", data.topic(), message, data.headers().lastHeader(KafkaHeaders.CORRELATION_ID));
     }
 
-    public void sendKafkaAsynchronous(KafkaMsg message) {
-        kafkaTemplate.send(kafkaConfig.getDestSubject(), message)
-                .addCallback(
-                        result -> logger.info("[SEND] topic={} message={}", kafkaConfig.getDestSubject(), message),
-                        ex -> logger.error("[SEND] send failed", ex)
-                );
-    }
-
-    public void sendKafka(KafkaMsg message) {
+    public void sendAsync(KafkaMsg message) {
         try {
-            SendResult<String, KafkaMsg> sendResult = kafkaTemplate.send(kafkaConfig.getDestSubject(), message).get(kafkaConfig.getTimeout(), TimeUnit.SECONDS);
-            logger.info("[SEND] topic={} message={}", kafkaConfig.getDestSubject(), message);
+            kafkaTemplate.send(kafkaConfig.getDestSubject(), message)
+                    .addCallback(
+                            result -> logger.info("[send] topic={} message={}", kafkaConfig.getDestSubject(), message),
+                            ex -> logger.error("[send] send async failed (callback)", ex)
+                    );
         } catch (Exception e) {
-            logger.error("[SEND] send failed", e);
+            logger.error("[send] send async failed", e);
         }
     }
 
-    public KafkaMsg sendKafkaRequest(KafkaMsg message) {
+    public void send(KafkaMsg message) {
+        try {
+            kafkaTemplate.send(kafkaConfig.getDestSubject(), message).get(kafkaConfig.getTimeout(), TimeUnit.SECONDS);
+            logger.info("[send] topic={} message={}", kafkaConfig.getDestSubject(), message);
+        } catch (Exception e) {
+            logger.error("[send] send failed", e);
+        }
+    }
+
+    public KafkaMsg sendRequest(KafkaMsg message) {
         KafkaMsg replyMessage = null;
         try {
             ProducerRecord<String, KafkaMsg> record = new ProducerRecord<>(kafkaConfig.getDestSubject(), message);
             RequestReplyFuture<String, KafkaMsg, KafkaMsg> reply = replyingKafkaTemplate.sendAndReceive(record, Duration.ofSeconds(60));
             SendResult<String, KafkaMsg> sendResult = reply.getSendFuture().get();
-            logger.info("[REQUEST] correlationId={} topic={} message={}", sendResult.getProducerRecord().headers().lastHeader(KafkaHeaders.CORRELATION_ID).value(), kafkaConfig.getDestSubject(), message);
+            logger.info("[sendRequest] correlationId={} topic={} message={}", sendResult.getProducerRecord().headers().lastHeader(KafkaHeaders.CORRELATION_ID).value(), kafkaConfig.getDestSubject(), message);
             replyMessage = reply.get(kafkaConfig.getTimeout(), TimeUnit.SECONDS).value();
-            logger.info("[REQUEST] replyMessage={}", replyMessage);
+            logger.info("[sendRequest] replyMessage={}", replyMessage);
         } catch (Exception e) {
-            logger.error("[REQUEST] request failed", e);
+            logger.error("[sendRequest] failed", e);
         }
         return replyMessage;
     }
