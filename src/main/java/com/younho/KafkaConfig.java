@@ -31,12 +31,11 @@ public class KafkaConfig {
         // TODO bootstrapserver를 생성자에서 받으면 properties를 여기서 초기화해도 됨
     }
 
-
     public KafkaWrapper createInstance() {
         KafkaWrapper kafkaWrapper = new KafkaWrapper(this);
 
-        kafkaWrapper.setProducerMeterRegistry(new MicrometerProducerListener<>(kafkaProducerMeterRegistry));
-        kafkaWrapper.setConsumerMeterRegistry(new MicrometerConsumerListener<>(kafkaConsumerMeterRegistry));
+        if (kafkaProducerMeterRegistry != null) kafkaWrapper.setProducerMeterRegistry(new MicrometerProducerListener<>(kafkaProducerMeterRegistry));
+        if (kafkaConsumerMeterRegistry != null) kafkaWrapper.setConsumerMeterRegistry(new MicrometerConsumerListener<>(kafkaConsumerMeterRegistry));
 
         return kafkaWrapper;
     }
