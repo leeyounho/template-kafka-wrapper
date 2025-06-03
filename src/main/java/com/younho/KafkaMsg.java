@@ -1,7 +1,9 @@
 package com.younho;
 
+import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonTypeInfo;
+import com.fasterxml.jackson.annotation.JsonValue;
 import org.springframework.kafka.support.KafkaHeaders;
 
 import java.nio.ByteBuffer;
@@ -16,6 +18,16 @@ public class KafkaMsg {
     public KafkaMsg() {
     }
 
+    @JsonCreator
+    public KafkaMsg(Map<String, Object> value) {
+        // 'headers'는 필드 선언 시 이미 초기화되었습니다.
+        if (value != null) {
+            this.value = new HashMap<>(value); // 외부 변경으로부터 안전하도록 방어적 복사
+        } else {
+            this.value = new HashMap<>(); // null 입력 시 빈 맵으로 초기화
+        }
+    }
+
     public void update(String key, Object value) {
         this.value.put(key, value);
     }
@@ -24,6 +36,7 @@ public class KafkaMsg {
         return this.value.get(key);
     }
 
+    @JsonValue
     public Map<String, Object> getValue() {
         return value;
     }

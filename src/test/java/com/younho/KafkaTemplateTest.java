@@ -31,7 +31,6 @@ import java.util.concurrent.TimeUnit;
 import static org.junit.jupiter.api.Assertions.*;
 
 @ExtendWith(SpringExtension.class)
-@DirtiesContext
 @EmbeddedKafka(topics = {"my-subject", "dest-subject"})
 public class KafkaTemplateTest {
     @Autowired
@@ -105,6 +104,7 @@ public class KafkaTemplateTest {
     }
 
     @Test
+    @DirtiesContext
     public void testSendMessage() throws InterruptedException {
         KafkaMsg kafkaMsg = new KafkaMsg();
         kafkaMsg.update("TEST_KEY", "TEST_VALUE");
@@ -118,6 +118,7 @@ public class KafkaTemplateTest {
     }
 
     @Test
+    @DirtiesContext
     public void testSendMessage_withHeaders() throws InterruptedException {
         KafkaMsg kafkaMsg = new KafkaMsg();
         kafkaMsg.update("TEST_KEY", "TEST_VALUE");
