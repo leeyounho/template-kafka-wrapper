@@ -3,7 +3,6 @@ package com.younho;
 import org.apache.kafka.clients.consumer.ConsumerConfig;
 import org.apache.kafka.clients.consumer.ConsumerRecord;
 import org.apache.kafka.clients.producer.ProducerConfig;
-import org.apache.kafka.common.errors.SerializationException;
 import org.apache.kafka.common.serialization.StringDeserializer;
 import org.apache.kafka.common.serialization.StringSerializer;
 import org.junit.jupiter.api.BeforeEach;
@@ -34,14 +33,14 @@ import static org.junit.jupiter.api.Assertions.*;
 @ExtendWith(SpringExtension.class)
 @DirtiesContext
 @EmbeddedKafka(topics = {"my-subject", "dest-subject"})
-public class KafkaTemplateTests {
+public class OtherSerializationTest {
     @Autowired
     EmbeddedKafkaBroker broker;
 
     BlockingQueue<ConsumerRecord<String, KafkaMsg>> records;
 
-    KafkaConfig kafkaConfig;
-    KafkaWrapper kafkaWrapper;
+    OtherKafkaConfig kafkaConfig;
+    OtherKafkaWrapper kafkaWrapper;
 
     @BeforeEach
     public void setup() {
@@ -67,7 +66,7 @@ public class KafkaTemplateTests {
         Map<String, Object> producerProps = new HashMap<>();
         producerProps.put(ProducerConfig.BOOTSTRAP_SERVERS_CONFIG, broker.getBrokersAsString());
         producerProps.put(ProducerConfig.KEY_SERIALIZER_CLASS_CONFIG, StringSerializer.class);
-        producerProps.put(ProducerConfig.VALUE_SERIALIZER_CLASS_CONFIG, KafkaMsgSerializer.class);
+        producerProps.put(ProducerConfig.VALUE_SERIALIZER_CLASS_CONFIG, OtherKafkaMsgSerializer.class);
         producerProps.put(ProducerConfig.ACKS_CONFIG, "all");
         producerProps.put(ProducerConfig.LINGER_MS_CONFIG, 0);
         producerProps.put(ProducerConfig.DELIVERY_TIMEOUT_MS_CONFIG, 120000);
@@ -94,7 +93,7 @@ public class KafkaTemplateTests {
         replyConsumerProps.put(JsonDeserializer.TRUSTED_PACKAGES, "*");
         replyConsumerProps.put(ConsumerConfig.PARTITION_ASSIGNMENT_STRATEGY_CONFIG, "org.apache.kafka.clients.consumer.CooperativeStickyAssignor");
 
-        kafkaConfig = new KafkaConfig();
+        kafkaConfig = new OtherKafkaConfig();
         kafkaConfig.setMySubject("my-subject");
         kafkaConfig.setDestSubject("dest-subject");
         kafkaConfig.setProducerProps(producerProps);
@@ -107,34 +106,20 @@ public class KafkaTemplateTests {
 
     @Test
     public void testSendMessage() throws InterruptedException {
-        KafkaMsg kafkaMsg = new KafkaMsg();
-        kafkaMsg.update("TEST_KEY", "TEST_VALUE");
+        OtherKafkaMsg kafkaMsg = new OtherKafkaMsg();
+        kafkaMsg.update("TEST_BYTES_KEY", "TEST_BYTES_VALUE".getBytes());
+        kafkaMsg.update("TEST_STRING_KEY", "TEST_STRING_VALUE");
+        kafkaMsg.update("TEST_INTEGER_KEY", 1);
+        kafkaMsg.update("TEST_INTEGER_LIKE_STRING_KEY", "2");
 
         kafkaWrapper.send(kafkaMsg);
 
         ConsumerRecord<String, KafkaMsg> received = records.poll(10, TimeUnit.SECONDS);
 
         assertNotNull(received, "Record not received");
-        assertEquals("TEST_VALUE", received.value().get("TEST_KEY"));
+        assertArrayEquals("TEST_BYTES_VALUE".getBytes(), (byte[]) received.value().get("TEST_BYTES_KEY"));
+        assertEquals("TEST_STRING_VALUE", received.value().get("TEST_STRING_KEY"));
+        assertEquals(1, received.value().get("TEST_INTEGER_KEY"));
+        assertEquals("2", received.value().get("TEST_INTEGER_LIKE_STRING_KEY"));
     }
-
-    @Test
-    public void testSendMessage_withHeaders() throws InterruptedException {
-        KafkaMsg kafkaMsg = new KafkaMsg();
-        kafkaMsg.update("TEST_KEY", "TEST_VALUE");
-        kafkaMsg.setCorrelationId("TEST_CORRELATION_ID".getBytes());
-        kafkaMsg.setReplyTopic("TEST_REPLY_TOPIC");
-        kafkaMsg.setReplyPartition(1);
-
-        kafkaWrapper.send(kafkaMsg);
-
-        ConsumerRecord<String, KafkaMsg> received = records.poll(10, TimeUnit.SECONDS);
-
-        assertNotNull(received, "Record not received");
-        assertEquals("TEST_VALUE", received.value().get("TEST_KEY"));
-        assertArrayEquals("TEST_CORRELATION_ID".getBytes(), received.value().getCorrelationId());
-        assertEquals("TEST_REPLY_TOPIC", received.value().getReplyTopic());
-        assertEquals(1, received.value().getReplyPartition());
-    }
-
 }

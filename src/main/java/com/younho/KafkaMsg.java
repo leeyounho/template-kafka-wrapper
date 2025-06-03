@@ -1,6 +1,7 @@
 package com.younho;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonTypeInfo;
 import org.springframework.kafka.support.KafkaHeaders;
 
 import java.nio.ByteBuffer;

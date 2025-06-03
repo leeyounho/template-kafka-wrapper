@@ -3,7 +3,6 @@ package com.younho;
 import org.apache.kafka.clients.consumer.ConsumerConfig;
 import org.apache.kafka.clients.consumer.ConsumerRecord;
 import org.apache.kafka.clients.producer.ProducerConfig;
-import org.apache.kafka.clients.producer.ProducerRecord;
 import org.apache.kafka.common.serialization.StringDeserializer;
 import org.apache.kafka.common.serialization.StringSerializer;
 import org.junit.jupiter.api.BeforeEach;
@@ -11,9 +10,6 @@ import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.kafka.core.DefaultKafkaConsumerFactory;
-import org.springframework.kafka.core.DefaultKafkaProducerFactory;
-import org.springframework.kafka.core.KafkaTemplate;
-import org.springframework.kafka.core.ProducerFactory;
 import org.springframework.kafka.listener.ContainerProperties;
 import org.springframework.kafka.listener.KafkaMessageListenerContainer;
 import org.springframework.kafka.listener.MessageListener;
@@ -37,15 +33,36 @@ import static org.junit.jupiter.api.Assertions.*;
 @ExtendWith(SpringExtension.class)
 @DirtiesContext
 @EmbeddedKafka(topics = {"my-subject", "dest-subject"})
-public class ReplyingKafkaTemplateTests {
+public class KafkaTemplateTest {
     @Autowired
     EmbeddedKafkaBroker broker;
+
+    BlockingQueue<ConsumerRecord<String, KafkaMsg>> records;
 
     KafkaConfig kafkaConfig;
     KafkaWrapper kafkaWrapper;
 
     @BeforeEach
     public void setup() {
+        // test consumer
+        Map<String, Object> testConsumerProps = KafkaTestUtils.consumerProps("testT", "false", broker);
+        testConsumerProps.put(ConsumerConfig.KEY_DESERIALIZER_CLASS_CONFIG, ErrorHandlingDeserializer.class);
+        testConsumerProps.put(ConsumerConfig.VALUE_DESERIALIZER_CLASS_CONFIG, ErrorHandlingDeserializer.class);
+        testConsumerProps.put(ErrorHandlingDeserializer.KEY_DESERIALIZER_CLASS, StringDeserializer.class);
+        testConsumerProps.put(ErrorHandlingDeserializer.VALUE_DESERIALIZER_CLASS, KafkaMsgDeserializer.class);
+        testConsumerProps.put(JsonDeserializer.TRUSTED_PACKAGES, "*");
+        testConsumerProps.put(ConsumerConfig.PARTITION_ASSIGNMENT_STRATEGY_CONFIG, "org.apache.kafka.clients.consumer.CooperativeStickyAssignor");
+        DefaultKafkaConsumerFactory<String, KafkaMsg> cf = new DefaultKafkaConsumerFactory<>(testConsumerProps);
+        ContainerProperties containerProperties = new ContainerProperties("dest-subject");
+        KafkaMessageListenerContainer<String, KafkaMsg> container = new KafkaMessageListenerContainer<>(cf, containerProperties);
+        records = new LinkedBlockingQueue<>();
+        container.setupMessageListener((MessageListener<String, KafkaMsg>) record -> {
+            System.out.println(record);
+            records.add(record);
+        });
+        container.start();
+        ContainerTestUtils.waitForAssignment(container, broker.getPartitionsPerTopic());
+
         Map<String, Object> producerProps = new HashMap<>();
         producerProps.put(ProducerConfig.BOOTSTRAP_SERVERS_CONFIG, broker.getBrokersAsString());
         producerProps.put(ProducerConfig.KEY_SERIALIZER_CLASS_CONFIG, StringSerializer.class);
@@ -88,52 +105,35 @@ public class ReplyingKafkaTemplateTests {
     }
 
     @Test
-    public void testRequestMessage() {
-        // test consumer
-        Map<String, Object> testConsumerProps = KafkaTestUtils.consumerProps("testT", "false", broker);
-        testConsumerProps.put(ConsumerConfig.KEY_DESERIALIZER_CLASS_CONFIG, ErrorHandlingDeserializer.class);
-        testConsumerProps.put(ConsumerConfig.VALUE_DESERIALIZER_CLASS_CONFIG, ErrorHandlingDeserializer.class);
-        testConsumerProps.put(ErrorHandlingDeserializer.KEY_DESERIALIZER_CLASS, StringDeserializer.class);
-        testConsumerProps.put(ErrorHandlingDeserializer.VALUE_DESERIALIZER_CLASS, KafkaMsgDeserializer.class);
-        testConsumerProps.put(JsonDeserializer.TRUSTED_PACKAGES, "*");
-        testConsumerProps.put(ConsumerConfig.PARTITION_ASSIGNMENT_STRATEGY_CONFIG, "org.apache.kafka.clients.consumer.CooperativeStickyAssignor");
-        DefaultKafkaConsumerFactory<String, KafkaMsg> cf = new DefaultKafkaConsumerFactory<>(testConsumerProps);
-        ContainerProperties containerProperties = new ContainerProperties("dest-subject");
-        KafkaMessageListenerContainer<String, KafkaMsg> container = new KafkaMessageListenerContainer<>(cf, containerProperties);
-
-        Map<String, Object> producerProps = KafkaTestUtils.producerProps(broker);
-        producerProps.put(ProducerConfig.BOOTSTRAP_SERVERS_CONFIG, broker.getBrokersAsString());
-        producerProps.put(ProducerConfig.KEY_SERIALIZER_CLASS_CONFIG, StringSerializer.class);
-        producerProps.put(ProducerConfig.VALUE_SERIALIZER_CLASS_CONFIG, KafkaMsgSerializer.class);
-        producerProps.put(ProducerConfig.ACKS_CONFIG, "all");
-        producerProps.put(ProducerConfig.LINGER_MS_CONFIG, 0);
-        producerProps.put(ProducerConfig.DELIVERY_TIMEOUT_MS_CONFIG, 120000);
-        producerProps.put(ProducerConfig.ENABLE_IDEMPOTENCE_CONFIG, "true");
-        producerProps.put(ProducerConfig.COMPRESSION_TYPE_CONFIG, "snappy");
-
-        ProducerFactory<String, KafkaMsg> pf = new DefaultKafkaProducerFactory<String, KafkaMsg>(producerProps);
-        KafkaTemplate<String, KafkaMsg> kafkaTemplate = new KafkaTemplate<>(pf);
-
-        container.setupMessageListener((MessageListener<String, KafkaMsg>) record -> {
-            System.out.println(record);
-
-            byte[] correlationId = record.value().getCorrelationId();
-            KafkaMsg kafkaMsg = new KafkaMsg();
-            kafkaMsg.setCorrelationId(correlationId);
-            kafkaMsg.update("PONG_KEY", "PONG_VALUE");
-
-            kafkaTemplate.send("my-subject", kafkaMsg);
-        });
-        container.start();
-        ContainerTestUtils.waitForAssignment(container, broker.getPartitionsPerTopic());
-
+    public void testSendMessage() throws InterruptedException {
         KafkaMsg kafkaMsg = new KafkaMsg();
-        kafkaMsg.update("PING_KEY", "PING_VALUE");
+        kafkaMsg.update("TEST_KEY", "TEST_VALUE");
 
-        KafkaMsg received = kafkaWrapper.sendRequest(kafkaMsg);
+        kafkaWrapper.send(kafkaMsg);
+
+        ConsumerRecord<String, KafkaMsg> received = records.poll(10, TimeUnit.SECONDS);
 
         assertNotNull(received, "Record not received");
-        assertNotNull(received.getCorrelationId(), "CorrelationId not null");
-        assertEquals("PONG_VALUE", received.get("PONG_KEY"));
+        assertEquals("TEST_VALUE", received.value().get("TEST_KEY"));
     }
+
+    @Test
+    public void testSendMessage_withHeaders() throws InterruptedException {
+        KafkaMsg kafkaMsg = new KafkaMsg();
+        kafkaMsg.update("TEST_KEY", "TEST_VALUE");
+        kafkaMsg.setCorrelationId("TEST_CORRELATION_ID".getBytes());
+        kafkaMsg.setReplyTopic("TEST_REPLY_TOPIC");
+        kafkaMsg.setReplyPartition(1);
+
+        kafkaWrapper.send(kafkaMsg);
+
+        ConsumerRecord<String, KafkaMsg> received = records.poll(10, TimeUnit.SECONDS);
+
+        assertNotNull(received, "Record not received");
+        assertEquals("TEST_VALUE", received.value().get("TEST_KEY"));
+        assertArrayEquals("TEST_CORRELATION_ID".getBytes(), received.value().getCorrelationId());
+        assertEquals("TEST_REPLY_TOPIC", received.value().getReplyTopic());
+        assertEquals(1, received.value().getReplyPartition());
+    }
+
 }
