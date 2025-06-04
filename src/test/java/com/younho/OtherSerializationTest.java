@@ -9,6 +9,7 @@ import com.younho.other.OtherKafkaWrapper;
 import org.apache.kafka.clients.consumer.ConsumerConfig;
 import org.apache.kafka.clients.consumer.ConsumerRecord;
 import org.apache.kafka.common.serialization.StringDeserializer;
+import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
@@ -40,6 +41,7 @@ public class OtherSerializationTest {
     @Autowired
     EmbeddedKafkaBroker broker;
 
+    KafkaMessageListenerContainer<String, KafkaMsg> container;
     BlockingQueue<ConsumerRecord<String, KafkaMsg>> records;
 
     OtherKafkaConfig kafkaConfig;
@@ -57,7 +59,7 @@ public class OtherSerializationTest {
         testConsumerProps.put(ConsumerConfig.PARTITION_ASSIGNMENT_STRATEGY_CONFIG, "org.apache.kafka.clients.consumer.CooperativeStickyAssignor");
         DefaultKafkaConsumerFactory<String, KafkaMsg> cf = new DefaultKafkaConsumerFactory<>(testConsumerProps);
         ContainerProperties containerProperties = new ContainerProperties("dest-subject");
-        KafkaMessageListenerContainer<String, KafkaMsg> container = new KafkaMessageListenerContainer<>(cf, containerProperties);
+        container = new KafkaMessageListenerContainer<>(cf, containerProperties);
         records = new LinkedBlockingQueue<>();
         container.setupMessageListener((MessageListener<String, KafkaMsg>) record -> {
             System.out.println(record);
@@ -75,6 +77,16 @@ public class OtherSerializationTest {
 
         kafkaWrapper = kafkaConfig.createInstance();
         kafkaWrapper.init();
+    }
+
+    @AfterEach
+    public void tearDown() {
+        if (kafkaWrapper != null) {
+            kafkaWrapper.destroy();
+        }
+        if (container != null && container.isRunning()) {
+            container.stop();
+        }
     }
 
     @Test

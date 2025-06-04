@@ -71,7 +71,7 @@ public class KafkaConfig {
     }
 
     public void setReplyConsumerGroupId(String groupId) {
-        this.replyConsumerProps.put(ConsumerConfig.GROUP_ID_CONFIG, groupId);
+        this.replyConsumerProps.put(ConsumerConfig.GROUP_ID_CONFIG, groupId + "-reply");
     }
 
     public KafkaWrapper createInstance() {

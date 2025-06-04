@@ -37,23 +37,29 @@ public class KafkaWrapper implements MessageListener<String, KafkaMsg> {
 
     public void init() {
         this.producerFactory = new DefaultKafkaProducerFactory<>(kafkaConfig.getProducerProps());
-        this.consumerFactory = new DefaultKafkaConsumerFactory<>(kafkaConfig.getConsumerProps());
+        if (producerMeterRegistry != null) {
+            producerFactory.addListener(producerMeterRegistry);
+        }
+        this.kafkaTemplate = new KafkaTemplate<>(producerFactory);
 
+
+        this.consumerFactory = new DefaultKafkaConsumerFactory<>(kafkaConfig.getConsumerProps());
+        if (consumerMeterRegistry != null) {
+            consumerFactory.addListener(consumerMeterRegistry);
+        }
         ContainerProperties containerProps = new ContainerProperties(kafkaConfig.getMySubject());
         containerProps.setMessageListener(this);
         this.container = new KafkaMessageListenerContainer<>(consumerFactory, containerProps);
-        this.replyConsumerFactory = new DefaultKafkaConsumerFactory<>(kafkaConfig.getReplyConsumerProps());
 
+        this.replyConsumerFactory = new DefaultKafkaConsumerFactory<>(kafkaConfig.getReplyConsumerProps());
+        if (consumerMeterRegistry != null) { // 응답 컨슈머에도 동일 리스너 적용
+            replyConsumerFactory.addListener(consumerMeterRegistry);
+        }
         ContainerProperties replyContainerProps = new ContainerProperties(kafkaConfig.getMySubject());
         KafkaMessageListenerContainer<String, KafkaMsg> replyContainer = new KafkaMessageListenerContainer<>(replyConsumerFactory, replyContainerProps);
-
-        this.kafkaTemplate = new KafkaTemplate<>(producerFactory);
         this.replyingKafkaTemplate = new ReplyingKafkaTemplate<>(producerFactory, replyContainer);
-        replyingKafkaTemplate.setSharedReplyTopic(true); // NOTE topic 공유
-
-        // register metric
-        if (producerMeterRegistry != null) producerFactory.addListener(producerMeterRegistry);
-        if (consumerMeterRegistry != null) consumerFactory.addListener(consumerMeterRegistry);
+        this.replyingKafkaTemplate.setSharedReplyTopic(true); // subject 공유
+        this.replyingKafkaTemplate.setDefaultReplyTimeout(Duration.ofSeconds(kafkaConfig.getTimeout())); // 기본 응답 타임아웃 설정
 
         // start
         this.container.start();
@@ -61,23 +67,18 @@ public class KafkaWrapper implements MessageListener<String, KafkaMsg> {
     }
 
     public void destroy() {
-        // 1. Listener Containers 중지
-        if (this.replyingKafkaTemplate != null && this.replyingKafkaTemplate.isRunning()) {
-            this.replyingKafkaTemplate.stop(); // 내부 Reply Listener Container 중지
+        if (this.replyingKafkaTemplate != null && this.replyingKafkaTemplate.isRunning()) { //
+            this.replyingKafkaTemplate.stop(); //
+            logger.info("ReplyingKafkaTemplate stopped.");
         }
-        if (this.container != null && this.container.isRunning()) {
-            this.container.stop();
+        if (this.container != null && this.container.isRunning()) { //
+            this.container.stop(); //
+            logger.info("KafkaMessageListenerContainer stopped.");
         }
-
-        // 2. ProducerFactory 해제 (kafkaTemplate과 replyingKafkaTemplate이 공유)
-        // DefaultKafkaProducerFactory의 destroy()는 여러 번 호출해도 안전합니다 (내부적으로 'closed' 플래그 체크).
-        if (this.producerFactory instanceof DefaultKafkaProducerFactory) {
-            ((DefaultKafkaProducerFactory<?, ?>) this.producerFactory).destroy();
+        if (this.producerFactory instanceof DefaultKafkaProducerFactory) { //
+            ((DefaultKafkaProducerFactory<?, ?>) this.producerFactory).destroy(); //
+            logger.info("ProducerFactory destroyed.");
         }
-
-        // DefaultKafkaConsumerFactory는 DisposableBean을 구현하지 않으므로,
-        // 컨테이너 중지로 인해 내부 컨슈머들이 닫히면서 관련 리소스가 정리됩니다.
-        // 따라서 consumerFactory 및 replyConsumerFactory에 대한 별도 destroy 호출은 필요하지 않습니다.
     }
 
     @Override
@@ -85,18 +86,6 @@ public class KafkaWrapper implements MessageListener<String, KafkaMsg> {
         if (data.headers().lastHeader(KafkaHeaders.CORRELATION_ID) != null) return; // reply 메시지 처리는 replyContainer 에서 처리하기 위해 무시
         KafkaMsg message = data.value();
         logger.info("[onMessage] topic={}, message={} correlationId={}", data.topic(), message, data.headers().lastHeader(KafkaHeaders.CORRELATION_ID));
-    }
-
-    public void sendAsync(KafkaMsg message) {
-        try {
-            kafkaTemplate.send(kafkaConfig.getDestSubject(), message)
-                    .addCallback(
-                            result -> logger.info("[send] topic={} message={}", kafkaConfig.getDestSubject(), message),
-                            ex -> logger.error("[send] send async failed (callback)", ex)
-                    );
-        } catch (Exception e) {
-            logger.error("[send] send async failed", e);
-        }
     }
 
     public void send(KafkaMsg message) {
