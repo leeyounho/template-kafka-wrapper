@@ -1,10 +1,7 @@
-package com.younho;
+package com.younho.other;
 
 import org.apache.kafka.common.header.Headers;
-import org.apache.kafka.common.header.internals.RecordHeader;
 import org.springframework.kafka.support.serializer.JsonSerializer;
-
-import java.util.Map;
 
 public class OtherKafkaMsgSerializer extends JsonSerializer<OtherKafkaMsg> {
     @Override

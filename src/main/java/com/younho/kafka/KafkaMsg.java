@@ -1,8 +1,7 @@
-package com.younho;
+package com.younho.kafka;
 
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonIgnore;
-import com.fasterxml.jackson.annotation.JsonTypeInfo;
 import com.fasterxml.jackson.annotation.JsonValue;
 import org.springframework.kafka.support.KafkaHeaders;
 

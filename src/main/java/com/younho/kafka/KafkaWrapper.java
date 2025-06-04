@@ -1,4 +1,4 @@
-package com.younho;
+package com.younho.kafka;
 
 import org.apache.kafka.clients.consumer.ConsumerRecord;
 import org.apache.kafka.clients.producer.ProducerRecord;
@@ -16,22 +16,22 @@ import org.springframework.kafka.support.SendResult;
 import java.time.Duration;
 import java.util.concurrent.TimeUnit;
 
-public class OtherKafkaWrapper implements MessageListener<String, OtherKafkaMsg> {
-    private static final Logger logger = LoggerFactory.getLogger(OtherKafkaWrapper.class);
+public class KafkaWrapper implements MessageListener<String, KafkaMsg> {
+    private static final Logger logger = LoggerFactory.getLogger(KafkaWrapper.class);
 
-    private OtherKafkaConfig kafkaConfig;
+    private KafkaConfig kafkaConfig;
 
-    private ProducerFactory<String, OtherKafkaMsg> producerFactory;
-    private ConsumerFactory<String, OtherKafkaMsg> consumerFactory;
-    private ConsumerFactory<String, OtherKafkaMsg> replyConsumerFactory;
-    private KafkaMessageListenerContainer<String, OtherKafkaMsg> container;
-    private KafkaTemplate<String, OtherKafkaMsg> kafkaTemplate;
-    private ReplyingKafkaTemplate<String, OtherKafkaMsg, OtherKafkaMsg> replyingKafkaTemplate;
+    private ProducerFactory<String, KafkaMsg> producerFactory;
+    private ConsumerFactory<String, KafkaMsg> consumerFactory;
+    private ConsumerFactory<String, KafkaMsg> replyConsumerFactory;
+    private KafkaMessageListenerContainer<String, KafkaMsg> container;
+    private KafkaTemplate<String, KafkaMsg> kafkaTemplate;
+    private ReplyingKafkaTemplate<String, KafkaMsg, KafkaMsg> replyingKafkaTemplate;
 
     private MicrometerProducerListener producerMeterRegistry;
     private MicrometerConsumerListener consumerMeterRegistry;
 
-    public OtherKafkaWrapper(OtherKafkaConfig kafkaConfig) {
+    public KafkaWrapper(KafkaConfig kafkaConfig) {
         this.kafkaConfig = kafkaConfig;
     }
 
@@ -39,17 +39,13 @@ public class OtherKafkaWrapper implements MessageListener<String, OtherKafkaMsg>
         this.producerFactory = new DefaultKafkaProducerFactory<>(kafkaConfig.getProducerProps());
         this.consumerFactory = new DefaultKafkaConsumerFactory<>(kafkaConfig.getConsumerProps());
 
-        // NOTE debug 용
-//        producerFactory.getConfigurationProperties().forEach((k, v) -> logger.info("ProducerConfig: {}={}", k, v));
-//        consumerFactory.getConfigurationProperties().forEach((k, v) -> logger.info("ConsumerConfig: {}={}", k, v));
-
         ContainerProperties containerProps = new ContainerProperties(kafkaConfig.getMySubject());
         containerProps.setMessageListener(this);
         this.container = new KafkaMessageListenerContainer<>(consumerFactory, containerProps);
         this.replyConsumerFactory = new DefaultKafkaConsumerFactory<>(kafkaConfig.getReplyConsumerProps());
 
         ContainerProperties replyContainerProps = new ContainerProperties(kafkaConfig.getMySubject());
-        KafkaMessageListenerContainer<String, OtherKafkaMsg> replyContainer = new KafkaMessageListenerContainer<>(replyConsumerFactory, replyContainerProps);
+        KafkaMessageListenerContainer<String, KafkaMsg> replyContainer = new KafkaMessageListenerContainer<>(replyConsumerFactory, replyContainerProps);
 
         this.kafkaTemplate = new KafkaTemplate<>(producerFactory);
         this.replyingKafkaTemplate = new ReplyingKafkaTemplate<>(producerFactory, replyContainer);
@@ -65,19 +61,33 @@ public class OtherKafkaWrapper implements MessageListener<String, OtherKafkaMsg>
     }
 
     public void destroy() {
-        ((DefaultKafkaProducerFactory<?, ?>) kafkaTemplate.getProducerFactory()).destroy();
-        ((DefaultKafkaProducerFactory<?, ?>) replyingKafkaTemplate.getProducerFactory()).destroy();
-        container.stop();
+        // 1. Listener Containers 중지
+        if (this.replyingKafkaTemplate != null && this.replyingKafkaTemplate.isRunning()) {
+            this.replyingKafkaTemplate.stop(); // 내부 Reply Listener Container 중지
+        }
+        if (this.container != null && this.container.isRunning()) {
+            this.container.stop();
+        }
+
+        // 2. ProducerFactory 해제 (kafkaTemplate과 replyingKafkaTemplate이 공유)
+        // DefaultKafkaProducerFactory의 destroy()는 여러 번 호출해도 안전합니다 (내부적으로 'closed' 플래그 체크).
+        if (this.producerFactory instanceof DefaultKafkaProducerFactory) {
+            ((DefaultKafkaProducerFactory<?, ?>) this.producerFactory).destroy();
+        }
+
+        // DefaultKafkaConsumerFactory는 DisposableBean을 구현하지 않으므로,
+        // 컨테이너 중지로 인해 내부 컨슈머들이 닫히면서 관련 리소스가 정리됩니다.
+        // 따라서 consumerFactory 및 replyConsumerFactory에 대한 별도 destroy 호출은 필요하지 않습니다.
     }
 
     @Override
-    public void onMessage(ConsumerRecord<String, OtherKafkaMsg> data) {
+    public void onMessage(ConsumerRecord<String, KafkaMsg> data) {
         if (data.headers().lastHeader(KafkaHeaders.CORRELATION_ID) != null) return; // reply 메시지 처리는 replyContainer 에서 처리하기 위해 무시
-        OtherKafkaMsg message = data.value();
+        KafkaMsg message = data.value();
         logger.info("[onMessage] topic={}, message={} correlationId={}", data.topic(), message, data.headers().lastHeader(KafkaHeaders.CORRELATION_ID));
     }
 
-    public void sendAsync(OtherKafkaMsg message) {
+    public void sendAsync(KafkaMsg message) {
         try {
             kafkaTemplate.send(kafkaConfig.getDestSubject(), message)
                     .addCallback(
@@ -89,7 +99,7 @@ public class OtherKafkaWrapper implements MessageListener<String, OtherKafkaMsg>
         }
     }
 
-    public void send(OtherKafkaMsg message) {
+    public void send(KafkaMsg message) {
         try {
             kafkaTemplate.send(kafkaConfig.getDestSubject(), message).get(kafkaConfig.getTimeout(), TimeUnit.SECONDS);
             logger.info("[send] topic={} message={}", kafkaConfig.getDestSubject(), message);
@@ -98,12 +108,12 @@ public class OtherKafkaWrapper implements MessageListener<String, OtherKafkaMsg>
         }
     }
 
-    public OtherKafkaMsg sendRequest(OtherKafkaMsg message) {
-        OtherKafkaMsg replyMessage = null;
+    public KafkaMsg sendRequest(KafkaMsg message) {
+        KafkaMsg replyMessage = null;
         try {
-            ProducerRecord<String, OtherKafkaMsg> record = new ProducerRecord<>(kafkaConfig.getDestSubject(), message);
-            RequestReplyFuture<String, OtherKafkaMsg, OtherKafkaMsg> reply = replyingKafkaTemplate.sendAndReceive(record, Duration.ofSeconds(60));
-            SendResult<String, OtherKafkaMsg> sendResult = reply.getSendFuture().get();
+            ProducerRecord<String, KafkaMsg> record = new ProducerRecord<>(kafkaConfig.getDestSubject(), message);
+            RequestReplyFuture<String, KafkaMsg, KafkaMsg> reply = replyingKafkaTemplate.sendAndReceive(record, Duration.ofSeconds(60));
+            SendResult<String, KafkaMsg> sendResult = reply.getSendFuture().get();
             logger.info("[sendRequest] correlationId={} topic={} message={}", sendResult.getProducerRecord().headers().lastHeader(KafkaHeaders.CORRELATION_ID).value(), kafkaConfig.getDestSubject(), message);
             replyMessage = reply.get(kafkaConfig.getTimeout(), TimeUnit.SECONDS).value();
             logger.info("[sendRequest] replyMessage={}", replyMessage);

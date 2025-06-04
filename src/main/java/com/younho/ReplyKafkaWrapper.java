@@ -1,5 +1,8 @@
 package com.younho;
 
+import com.younho.kafka.KafkaMsg;
+import com.younho.kafka.KafkaMsgDeserializer;
+import com.younho.kafka.KafkaMsgSerializer;
 import org.apache.kafka.clients.consumer.ConsumerConfig;
 import org.apache.kafka.clients.consumer.ConsumerRecord;
 import org.apache.kafka.clients.producer.ProducerConfig;

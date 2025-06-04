@@ -1,11 +1,7 @@
-package com.younho;
+package com.younho.kafka;
 
-import com.fasterxml.jackson.core.type.TypeReference;
-import org.apache.kafka.common.errors.SerializationException;
 import org.apache.kafka.common.header.Header;
 import org.apache.kafka.common.header.Headers;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 import org.springframework.kafka.support.serializer.JsonDeserializer;
 
 import java.util.Base64;
@@ -16,6 +12,7 @@ public class KafkaMsgDeserializer extends JsonDeserializer<KafkaMsg> {
     public KafkaMsgDeserializer() {
         super(KafkaMsg.class);
         this.setUseTypeHeaders(false);
+        this.addTrustedPackages("*");
     }
 
     @Override

@@ -1,5 +1,6 @@
 package com.younho;
 
+import com.younho.kafka.*;
 import org.apache.kafka.clients.consumer.ConsumerConfig;
 import org.apache.kafka.clients.producer.ProducerConfig;
 import org.apache.kafka.common.serialization.StringDeserializer;
@@ -24,10 +25,10 @@ import org.springframework.kafka.test.utils.KafkaTestUtils;
 import org.springframework.test.annotation.DirtiesContext;
 import org.springframework.test.context.junit.jupiter.SpringExtension;
 
-import java.util.HashMap;
 import java.util.Map;
 
-import static org.junit.jupiter.api.Assertions.*;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertNotNull;
 
 @ExtendWith(SpringExtension.class)
 @DirtiesContext
@@ -36,48 +37,16 @@ public class ReplyingKafkaTemplateTest {
     @Autowired
     EmbeddedKafkaBroker broker;
 
-    KafkaConfig kafkaConfig;
     KafkaWrapper kafkaWrapper;
 
     @BeforeEach
     public void setup() {
-        Map<String, Object> producerProps = new HashMap<>();
-        producerProps.put(ProducerConfig.BOOTSTRAP_SERVERS_CONFIG, broker.getBrokersAsString());
-        producerProps.put(ProducerConfig.KEY_SERIALIZER_CLASS_CONFIG, StringSerializer.class);
-        producerProps.put(ProducerConfig.VALUE_SERIALIZER_CLASS_CONFIG, KafkaMsgSerializer.class);
-        producerProps.put(ProducerConfig.ACKS_CONFIG, "all");
-        producerProps.put(ProducerConfig.LINGER_MS_CONFIG, 0);
-        producerProps.put(ProducerConfig.DELIVERY_TIMEOUT_MS_CONFIG, 120000);
-        producerProps.put(ProducerConfig.ENABLE_IDEMPOTENCE_CONFIG, "true");
-        producerProps.put(ProducerConfig.COMPRESSION_TYPE_CONFIG, "snappy");
-
-        Map<String, Object> consumerProps = new HashMap<>();
-        consumerProps.put(ConsumerConfig.BOOTSTRAP_SERVERS_CONFIG, broker.getBrokersAsString());
-        consumerProps.put(ConsumerConfig.KEY_DESERIALIZER_CLASS_CONFIG, ErrorHandlingDeserializer.class);
-        consumerProps.put(ConsumerConfig.VALUE_DESERIALIZER_CLASS_CONFIG, ErrorHandlingDeserializer.class);
-        consumerProps.put(ErrorHandlingDeserializer.KEY_DESERIALIZER_CLASS, StringDeserializer.class);
-        consumerProps.put(ErrorHandlingDeserializer.VALUE_DESERIALIZER_CLASS, KafkaMsgDeserializer.class);
-        consumerProps.put(ConsumerConfig.GROUP_ID_CONFIG, "my-group");
-        consumerProps.put(JsonDeserializer.TRUSTED_PACKAGES, "*");
-        consumerProps.put(ConsumerConfig.PARTITION_ASSIGNMENT_STRATEGY_CONFIG, "org.apache.kafka.clients.consumer.CooperativeStickyAssignor");
-
-        Map<String, Object> replyConsumerProps = new HashMap<>();
-        replyConsumerProps.put(ConsumerConfig.BOOTSTRAP_SERVERS_CONFIG, broker.getBrokersAsString());
-        replyConsumerProps.put(ConsumerConfig.KEY_DESERIALIZER_CLASS_CONFIG, ErrorHandlingDeserializer.class);
-        replyConsumerProps.put(ConsumerConfig.VALUE_DESERIALIZER_CLASS_CONFIG, ErrorHandlingDeserializer.class);
-        replyConsumerProps.put(ErrorHandlingDeserializer.KEY_DESERIALIZER_CLASS, StringDeserializer.class);
-        replyConsumerProps.put(ErrorHandlingDeserializer.VALUE_DESERIALIZER_CLASS, KafkaMsgDeserializer.class);
-        replyConsumerProps.put(ConsumerConfig.GROUP_ID_CONFIG, "my-group" + "-reply");
-        replyConsumerProps.put(JsonDeserializer.TRUSTED_PACKAGES, "*");
-        replyConsumerProps.put(ConsumerConfig.PARTITION_ASSIGNMENT_STRATEGY_CONFIG, "org.apache.kafka.clients.consumer.CooperativeStickyAssignor");
-
-        kafkaConfig = new KafkaConfig();
+        KafkaConfig kafkaConfig = new KafkaConfig();
+        kafkaConfig.setBootstrapServers(broker.getBrokersAsString());
+        kafkaConfig.setConsumerGroupId("my-group");
+        kafkaConfig.setReplyConsumerGroupId("my-group-reply");
         kafkaConfig.setMySubject("my-subject");
         kafkaConfig.setDestSubject("dest-subject");
-        kafkaConfig.setProducerProps(producerProps);
-        kafkaConfig.setConsumerProps(consumerProps);
-        kafkaConfig.setReplyConsumerProps(replyConsumerProps);
-
         kafkaWrapper = kafkaConfig.createInstance();
         kafkaWrapper.init();
     }

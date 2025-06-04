@@ -1,4 +1,4 @@
-package com.younho;
+package com.younho.other;
 
 import com.fasterxml.jackson.annotation.JsonValue;
 

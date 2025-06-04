@@ -1,4 +1,4 @@
-package com.younho;
+package com.younho.kafka;
 
 import io.micrometer.core.instrument.Clock;
 import io.micrometer.core.instrument.MeterRegistry;
