@@ -112,6 +112,34 @@ public class KafkaWrapper implements MessageListener<String, KafkaMsg> {
         return replyMessage;
     }
 
+    public void reply(KafkaMsg replyMessage) {
+        String replyToTopic = replyMessage.getReplyTopic();
+        Integer replyToPartition = replyMessage.getReplyPartition();
+
+        if (replyToTopic == null || replyToTopic.isEmpty()) {
+            replyToTopic = kafkaConfig.getDestSubject();
+        }
+
+        byte[] correlationId = replyMessage.getCorrelationId();
+        if (correlationId == null || correlationId.length == 0) {
+            return;
+        }
+
+        ProducerRecord<String, KafkaMsg> recordToSend;
+        if (replyToPartition != null) {
+            recordToSend = new ProducerRecord<>(replyToTopic, replyToPartition, null, replyMessage); // key는 null로 설정 (필요시 key 설정)
+            logger.debug("[reply] Sending reply to specific partition: {} of topic: {}", replyToPartition, replyToTopic);
+        } else {
+            recordToSend = new ProducerRecord<>(replyToTopic, replyMessage); // 파티션 지정 없이 전송 (Kafka가 파티셔닝)
+        }
+
+        try {
+            SendResult<String, KafkaMsg> sendResult = kafkaTemplate.send(recordToSend).get(kafkaConfig.getTimeout(), TimeUnit.SECONDS);
+        } catch (Exception e) {
+        }
+    }
+
+
     public void setProducerMeterRegistry(MicrometerProducerListener producerMeterRegistry) {
         this.producerMeterRegistry = producerMeterRegistry;
     }
