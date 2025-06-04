@@ -67,16 +67,16 @@ public class KafkaWrapper implements MessageListener<String, KafkaMsg> {
     }
 
     public void destroy() {
-        if (this.replyingKafkaTemplate != null && this.replyingKafkaTemplate.isRunning()) { //
-            this.replyingKafkaTemplate.stop(); //
+        if (this.replyingKafkaTemplate != null && this.replyingKafkaTemplate.isRunning()) {
+            this.replyingKafkaTemplate.stop();
             logger.info("ReplyingKafkaTemplate stopped.");
         }
-        if (this.container != null && this.container.isRunning()) { //
-            this.container.stop(); //
+        if (this.container != null && this.container.isRunning()) {
+            this.container.stop();
             logger.info("KafkaMessageListenerContainer stopped.");
         }
-        if (this.producerFactory instanceof DefaultKafkaProducerFactory) { //
-            ((DefaultKafkaProducerFactory<?, ?>) this.producerFactory).destroy(); //
+        if (this.producerFactory instanceof DefaultKafkaProducerFactory) {
+            ((DefaultKafkaProducerFactory<?, ?>) this.producerFactory).destroy();
             logger.info("ProducerFactory destroyed.");
         }
     }
