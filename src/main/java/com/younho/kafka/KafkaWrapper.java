@@ -58,8 +58,8 @@ public class KafkaWrapper implements MessageListener<String, KafkaMsg> {
         ContainerProperties replyContainerProps = new ContainerProperties(kafkaConfig.getMySubject());
         KafkaMessageListenerContainer<String, KafkaMsg> replyContainer = new KafkaMessageListenerContainer<>(replyConsumerFactory, replyContainerProps);
         this.replyingKafkaTemplate = new ReplyingKafkaTemplate<>(producerFactory, replyContainer);
-        this.replyingKafkaTemplate.setSharedReplyTopic(true); // subject 공유
-        this.replyingKafkaTemplate.setDefaultReplyTimeout(Duration.ofSeconds(kafkaConfig.getTimeout())); // 기본 응답 타임아웃 설정
+        this.replyingKafkaTemplate.setSharedReplyTopic(true);
+        this.replyingKafkaTemplate.setDefaultReplyTimeout(Duration.ofSeconds(kafkaConfig.getSendSyncTimeout()));
 
         // start
         this.container.start();
@@ -90,7 +90,7 @@ public class KafkaWrapper implements MessageListener<String, KafkaMsg> {
 
     public void send(KafkaMsg message) {
         try {
-            kafkaTemplate.send(kafkaConfig.getDestSubject(), message).get(kafkaConfig.getTimeout(), TimeUnit.SECONDS);
+            kafkaTemplate.send(kafkaConfig.getDestSubject(), message).get(kafkaConfig.getSendSyncTimeout(), TimeUnit.SECONDS);
             logger.info("[send] topic={} message={}", kafkaConfig.getDestSubject(), message);
         } catch (Exception e) {
             logger.error("[send] send failed", e);
@@ -101,10 +101,10 @@ public class KafkaWrapper implements MessageListener<String, KafkaMsg> {
         KafkaMsg replyMessage = null;
         try {
             ProducerRecord<String, KafkaMsg> record = new ProducerRecord<>(kafkaConfig.getDestSubject(), message);
-            RequestReplyFuture<String, KafkaMsg, KafkaMsg> reply = replyingKafkaTemplate.sendAndReceive(record, Duration.ofSeconds(60));
+            RequestReplyFuture<String, KafkaMsg, KafkaMsg> reply = replyingKafkaTemplate.sendAndReceive(record);
             SendResult<String, KafkaMsg> sendResult = reply.getSendFuture().get();
             logger.info("[sendRequest] correlationId={} topic={} message={}", sendResult.getProducerRecord().headers().lastHeader(KafkaHeaders.CORRELATION_ID).value(), kafkaConfig.getDestSubject(), message);
-            replyMessage = reply.get(kafkaConfig.getTimeout(), TimeUnit.SECONDS).value();
+            replyMessage = reply.get(kafkaConfig.getSendSyncTimeout(), TimeUnit.SECONDS).value();
             logger.info("[sendRequest] replyMessage={}", replyMessage);
         } catch (Exception e) {
             logger.error("[sendRequest] failed", e);
@@ -134,11 +134,10 @@ public class KafkaWrapper implements MessageListener<String, KafkaMsg> {
         }
 
         try {
-            SendResult<String, KafkaMsg> sendResult = kafkaTemplate.send(recordToSend).get(kafkaConfig.getTimeout(), TimeUnit.SECONDS);
+            SendResult<String, KafkaMsg> sendResult = kafkaTemplate.send(recordToSend).get(kafkaConfig.getSendSyncTimeout(), TimeUnit.SECONDS);
         } catch (Exception e) {
         }
     }
-
 
     public void setProducerMeterRegistry(MicrometerProducerListener producerMeterRegistry) {
         this.producerMeterRegistry = producerMeterRegistry;

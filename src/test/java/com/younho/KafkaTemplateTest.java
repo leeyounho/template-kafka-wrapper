@@ -1,84 +1,33 @@
 package com.younho;
 
-import com.younho.kafka.KafkaConfig;
 import com.younho.kafka.KafkaMsg;
-import com.younho.kafka.KafkaMsgDeserializer;
-import com.younho.kafka.KafkaWrapper;
-import org.apache.kafka.clients.consumer.ConsumerConfig;
+import com.younho.util.AbstractKafkaTest;
+import com.younho.util.TestConsumerUtil;
 import org.apache.kafka.clients.consumer.ConsumerRecord;
-import org.apache.kafka.common.serialization.StringDeserializer;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
-import org.junit.jupiter.api.extension.ExtendWith;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.kafka.core.DefaultKafkaConsumerFactory;
-import org.springframework.kafka.listener.ContainerProperties;
 import org.springframework.kafka.listener.KafkaMessageListenerContainer;
-import org.springframework.kafka.listener.MessageListener;
-import org.springframework.kafka.support.serializer.ErrorHandlingDeserializer;
-import org.springframework.kafka.support.serializer.JsonDeserializer;
-import org.springframework.kafka.test.EmbeddedKafkaBroker;
-import org.springframework.kafka.test.context.EmbeddedKafka;
-import org.springframework.kafka.test.utils.ContainerTestUtils;
-import org.springframework.kafka.test.utils.KafkaTestUtils;
 import org.springframework.test.annotation.DirtiesContext;
-import org.springframework.test.context.junit.jupiter.SpringExtension;
 
-import java.util.Map;
 import java.util.concurrent.BlockingQueue;
-import java.util.concurrent.LinkedBlockingQueue;
 import java.util.concurrent.TimeUnit;
 
 import static org.junit.jupiter.api.Assertions.*;
 
-@ExtendWith(SpringExtension.class)
-@EmbeddedKafka(topics = {"my-subject", "dest-subject"})
-public class KafkaTemplateTest {
-    @Autowired
-    EmbeddedKafkaBroker broker;
-
+public class KafkaTemplateTest extends AbstractKafkaTest {
     KafkaMessageListenerContainer<String, KafkaMsg> container;
     BlockingQueue<ConsumerRecord<String, KafkaMsg>> records;
 
-    KafkaWrapper kafkaWrapper;
-
     @BeforeEach
-    public void setup() {
-        // test consumer
-        Map<String, Object> testConsumerProps = KafkaTestUtils.consumerProps("testT", "false", broker);
-        testConsumerProps.put(ConsumerConfig.KEY_DESERIALIZER_CLASS_CONFIG, ErrorHandlingDeserializer.class);
-        testConsumerProps.put(ConsumerConfig.VALUE_DESERIALIZER_CLASS_CONFIG, ErrorHandlingDeserializer.class);
-        testConsumerProps.put(ErrorHandlingDeserializer.KEY_DESERIALIZER_CLASS, StringDeserializer.class);
-        testConsumerProps.put(ErrorHandlingDeserializer.VALUE_DESERIALIZER_CLASS, KafkaMsgDeserializer.class);
-        testConsumerProps.put(JsonDeserializer.TRUSTED_PACKAGES, "*");
-        testConsumerProps.put(ConsumerConfig.PARTITION_ASSIGNMENT_STRATEGY_CONFIG, "org.apache.kafka.clients.consumer.CooperativeStickyAssignor");
-        DefaultKafkaConsumerFactory<String, KafkaMsg> cf = new DefaultKafkaConsumerFactory<>(testConsumerProps);
-        ContainerProperties containerProperties = new ContainerProperties("dest-subject");
-        container = new KafkaMessageListenerContainer<>(cf, containerProperties);
-        records = new LinkedBlockingQueue<>();
-        container.setupMessageListener((MessageListener<String, KafkaMsg>) record -> {
-            System.out.println(record);
-            records.add(record);
-        });
-        container.start();
-        ContainerTestUtils.waitForAssignment(container, broker.getPartitionsPerTopic());
-
-        KafkaConfig kafkaConfig = new KafkaConfig();
-        kafkaConfig.setBootstrapServers(broker.getBrokersAsString());
-        kafkaConfig.setConsumerGroupId("my-group");
-        kafkaConfig.setReplyConsumerGroupId("my-group-reply");
-        kafkaConfig.setMySubject("my-subject");
-        kafkaConfig.setDestSubject("dest-subject");
-        kafkaWrapper = kafkaConfig.createInstance();
-        kafkaWrapper.init();
+    public void setupLocal() { // AbstractKafkaIntegrationTest의 setUpKafkaWrapper 이후 실행됨
+        TestConsumerUtil.TestConsumerSetup testConsumerSetup = TestConsumerUtil.setupTestConsumer(embeddedKafkaBroker, DEST_SUBJECT, "templateTest");
+        container = testConsumerSetup.getContainer();
+        records = testConsumerSetup.getRecords();
     }
 
     @AfterEach
-    public void tearDown() {
-        if (kafkaWrapper != null) {
-            kafkaWrapper.destroy();
-        }
+    public void tearDownLocal() {
         if (container != null && container.isRunning()) {
             container.stop();
         }

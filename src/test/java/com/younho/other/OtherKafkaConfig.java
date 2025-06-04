@@ -22,7 +22,7 @@ public class OtherKafkaConfig {
     private String bootstrapServers;
     private String mySubject;
     private String destSubject;
-    private long timeout = 60L;
+    private long sendSyncTimeout = 60L;
 
     private Map<String, Object> producerProps = new HashMap<>();
     private Map<String, Object> consumerProps = new HashMap<>();
@@ -47,7 +47,7 @@ public class OtherKafkaConfig {
         producerProps.put(ProducerConfig.KEY_SERIALIZER_CLASS_CONFIG, StringSerializer.class);
         producerProps.put(ProducerConfig.VALUE_SERIALIZER_CLASS_CONFIG, OtherKafkaMsgSerializer.class); // 사용자 정의 직렬화 클래스
         producerProps.put(ProducerConfig.ACKS_CONFIG, "all");
-        producerProps.put(ProducerConfig.DELIVERY_TIMEOUT_MS_CONFIG, 120000); // TODO
+        producerProps.put(ProducerConfig.DELIVERY_TIMEOUT_MS_CONFIG, 120000);
         producerProps.put(ProducerConfig.ENABLE_IDEMPOTENCE_CONFIG, "true");
         producerProps.put(ProducerConfig.COMPRESSION_TYPE_CONFIG, "snappy");
     }
@@ -72,7 +72,7 @@ public class OtherKafkaConfig {
     }
 
     public void setReplyConsumerGroupId(String groupId) {
-        this.replyConsumerProps.put(ConsumerConfig.GROUP_ID_CONFIG, groupId);
+        this.replyConsumerProps.put(ConsumerConfig.GROUP_ID_CONFIG, groupId + "-reply");
     }
 
     public OtherKafkaWrapper createInstance() {
@@ -130,11 +130,11 @@ public class OtherKafkaConfig {
         this.replyConsumerProps = replyConsumerProps;
     }
 
-    public long getTimeout() {
-        return timeout;
+    public long getSendSyncTimeout() {
+        return sendSyncTimeout;
     }
 
-    public void setTimeout(long timeout) {
-        this.timeout = timeout;
+    public void setSendSyncTimeout(long sendSyncTimeout) {
+        this.sendSyncTimeout = sendSyncTimeout;
     }
 }

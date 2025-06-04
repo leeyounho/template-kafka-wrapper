@@ -6,6 +6,8 @@ import org.apache.kafka.clients.producer.ProducerConfig;
 import org.apache.kafka.common.serialization.StringDeserializer;
 import org.apache.kafka.common.serialization.StringSerializer;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
+import org.springframework.context.annotation.PropertySource;
 import org.springframework.context.annotation.Scope;
 import org.springframework.kafka.core.MicrometerConsumerListener;
 import org.springframework.kafka.core.MicrometerProducerListener;
@@ -21,7 +23,7 @@ public class KafkaConfig {
     private String bootstrapServers;
     private String mySubject;
     private String destSubject;
-    private long timeout = 60L;
+    private long sendSyncTimeout = 60L;
 
     private Map<String, Object> producerProps = new HashMap<>();
     private Map<String, Object> consumerProps = new HashMap<>();
@@ -46,7 +48,7 @@ public class KafkaConfig {
         producerProps.put(ProducerConfig.KEY_SERIALIZER_CLASS_CONFIG, StringSerializer.class);
         producerProps.put(ProducerConfig.VALUE_SERIALIZER_CLASS_CONFIG, KafkaMsgSerializer.class); // 사용자 정의 직렬화 클래스
         producerProps.put(ProducerConfig.ACKS_CONFIG, "all");
-        producerProps.put(ProducerConfig.DELIVERY_TIMEOUT_MS_CONFIG, 120000); // TODO
+        producerProps.put(ProducerConfig.DELIVERY_TIMEOUT_MS_CONFIG, 120000);
         producerProps.put(ProducerConfig.ENABLE_IDEMPOTENCE_CONFIG, "true");
         producerProps.put(ProducerConfig.COMPRESSION_TYPE_CONFIG, "snappy");
     }
@@ -129,11 +131,11 @@ public class KafkaConfig {
         this.replyConsumerProps = replyConsumerProps;
     }
 
-    public long getTimeout() {
-        return timeout;
+    public long getSendSyncTimeout() {
+        return sendSyncTimeout;
     }
 
-    public void setTimeout(long timeout) {
-        this.timeout = timeout;
+    public void setSendSyncTimeout(long sendSyncTimeout) {
+        this.sendSyncTimeout = sendSyncTimeout;
     }
 }

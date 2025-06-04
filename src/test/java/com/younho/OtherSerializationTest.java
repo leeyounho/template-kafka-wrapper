@@ -1,6 +1,5 @@
 package com.younho;
 
-import com.younho.kafka.KafkaConfig;
 import com.younho.kafka.KafkaMsg;
 import com.younho.kafka.KafkaMsgDeserializer;
 import com.younho.other.OtherKafkaConfig;
