@@ -17,6 +17,9 @@ dependencies {
     implementation 'io.micrometer:micrometer-core:1.15.0'
     implementation 'org.apache.kafka:kafka-clients:2.5.1'
 
+    implementation 'io.micrometer:micrometer-registry-prometheus:1.15.0'
+    implementation 'org.springframework:spring-webmvc:5.3.39'
+
     implementation 'org.springframework:spring-context:5.3.39'
     implementation 'org.springframework.kafka:spring-kafka:2.6.5'
 
