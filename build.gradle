@@ -27,6 +27,9 @@ dependencies {
     testImplementation 'org.junit.jupiter:junit-jupiter'
     testImplementation 'org.springframework:spring-test:5.3.39'
     testImplementation 'org.springframework.kafka:spring-kafka-test:2.9.13'
+    testImplementation 'org.mockito:mockito-core:4.11.0'
+    testImplementation 'org.mockito:mockito-junit-jupiter:4.11.0'
+    testImplementation 'org.assertj:assertj-core:3.24.2'
 }
 
 test {
