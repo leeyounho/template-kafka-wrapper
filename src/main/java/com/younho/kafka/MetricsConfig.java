@@ -8,15 +8,11 @@ import io.micrometer.core.instrument.binder.system.UptimeMetrics;
 import io.micrometer.core.instrument.composite.CompositeMeterRegistry;
 import io.micrometer.prometheusmetrics.PrometheusConfig;
 import io.micrometer.prometheusmetrics.PrometheusMeterRegistry;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
 @Configuration
 public class MetricsConfig {
-    private static final Logger logger = LoggerFactory.getLogger(MetricsConfig.class);
-
     @Bean
     public PrometheusMeterRegistry prometheusMeterRegistry() {
         return new PrometheusMeterRegistry(PrometheusConfig.DEFAULT);
@@ -30,6 +26,8 @@ public class MetricsConfig {
     @Bean
     public MeterRegistry meterRegistry(PrometheusMeterRegistry prometheusMeterRegistry) {
         CompositeMeterRegistry registry = new CompositeMeterRegistry();
+        registry.config().commonTags("server.name", System.getProperty("server.name"));
+        registry.add(prometheusMeterRegistry);
 
         // jvm
         new ClassLoaderMetrics().bindTo(registry);
@@ -57,7 +55,6 @@ public class MetricsConfig {
         // kafka consumer
         // TODO
 
-        registry.add(prometheusMeterRegistry);
         return registry;
     }
 }
